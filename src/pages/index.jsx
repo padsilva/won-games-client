@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
 
-export default function Home({ title = 'React Avançado!' }) {
+export default function Home({ title = 'React Advanced!' }) {
   return (
     <div className={styles.container}>
       <Head>
