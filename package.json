@@ -20,7 +20,7 @@
   "lint-staged": {
     "src/**/*": [
       "eslint --ext .jsx,.js src --fix",
-      "npm run test --findRelatedTests --bail"
+      "jest --findRelatedTests --bail"
     ]
   },
   "dependencies": {
