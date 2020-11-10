@@ -3,5 +3,6 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.js(x)?'],
-  setupFilesAfterEnv: ['<rootDir>/.jest/setup.js']
+  setupFilesAfterEnv: ['<rootDir>/.jest/setup.js'],
+  modulePaths: ['<rootDir>/src/']
 }

@@ -1,13 +1,27 @@
-import '../../styles/globals.css'
 import PropTypes from 'prop-types'
+import Head from 'next/head'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+import GlobalStyles from 'styles/global'
 
-MyApp.propTypes = {
+const App = ({ Component, pageProps }) => (
+  <>
+    <Head>
+      <title>Advanced React - Boilerplate</title>
+      <link rel="shortcut icon" href="/img/icon-512.png" />
+      <link rel="apple-touch-icon" href="/img/icon-192.png" />
+      <meta
+        name="description"
+        content="A simple project starter to work with JavaScript, React, Next.js and Styled Components"
+      />
+    </Head>
+    <GlobalStyles />
+    <Component {...pageProps} />
+  </>
+)
+
+App.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired
 }
 
-export default MyApp
+export default App
