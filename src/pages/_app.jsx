@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types'
 import Head from 'next/head'
+import { ThemeProvider } from 'styled-components'
 
 import GlobalStyles from 'styles/global'
+import theme from 'styles/theme'
 
 const App = ({ Component, pageProps }) => (
-  <>
+  <ThemeProvider theme={theme}>
     <Head>
       <title>Advanced React - Boilerplate</title>
       <link rel="shortcut icon" href="/img/icon-512.png" />
@@ -17,7 +19,7 @@ const App = ({ Component, pageProps }) => (
     </Head>
     <GlobalStyles />
     <Component {...pageProps} />
-  </>
+  </ThemeProvider>
 )
 
 App.propTypes = {

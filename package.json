@@ -10,8 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "generate": "yarn plop --plopfile ./generators/plopfile.js",
-    "storybook": "start-storybook -s ./public -p 6006 --no-dll",
-    "build-storybook": "build-storybook --no-dll"
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
