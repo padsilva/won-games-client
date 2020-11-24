@@ -33,6 +33,6 @@ export const Wrapper = styled.div`
 
     ${!!size && wrapperModifiers[size]}
 
-    ${!!hideOnMobile && wrapperModifiers.hideOnMobile}
+    ${hideOnMobile && wrapperModifiers.hideOnMobile}
   `}
 `
