@@ -5,8 +5,8 @@ export default {
   component: Heading
 }
 
-export const Basic = (args) => <Heading {...args} />
+export const Default = (args) => <Heading {...args} />
 
-Basic.args = {
+Default.args = {
   children: 'Most Popular'
 }

@@ -5,4 +5,4 @@ export default {
   component: Logo
 }
 
-export const Basic = (args) => <Logo {...args} />
+export const Default = (args) => <Logo {...args} />
