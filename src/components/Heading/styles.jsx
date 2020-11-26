@@ -2,12 +2,25 @@ import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
 const wrapperModifiers = {
-  lineLeft: (theme) => css`
+  small: (theme) => css`
+    font-size: ${theme.font.sizes.medium};
+
+    &::after {
+      width: 3rem;
+    }
+  `,
+  medium: (theme) => css`
+    font-size: ${theme.font.sizes.xlarge};
+    ${media.greaterThan('medium')`
+      font-size: ${theme.font.sizes.xxlarge};
+    `}
+  `,
+  lineLeft: (theme, lineColor) => css`
     padding-left: ${theme.spacings.xxsmall};
-    border-left: 0.7rem solid ${theme.colors.secondary};
+    border-left: 0.7rem solid ${theme.colors[lineColor]};
   `,
 
-  lineBottom: (theme) => css`
+  lineBottom: (theme, lineColor) => css`
     position: relative;
     margin-bottom: ${theme.spacings.medium};
     &::after {
@@ -16,19 +29,17 @@ const wrapperModifiers = {
       bottom: -0.5rem;
       content: '';
       width: 5rem;
-      border-bottom: 0.5rem solid ${theme.colors.primary};
+      border-bottom: 0.5rem solid ${theme.colors[lineColor]};
     }
   `
 }
 
 export const Wrapper = styled.h2`
-  ${({ theme, color, lineLeft, lineBottom }) => css`
+  ${({ theme, color, lineLeft, lineBottom, size, lineColor }) => css`
     color: ${theme.colors[color]};
-    font-size: ${theme.font.sizes.xlarge};
-    ${media.greaterThan('medium')`
-      font-size: ${theme.font.sizes.xxlarge};
-    `}
-    ${lineLeft && wrapperModifiers.lineLeft(theme)}
-    ${lineBottom && wrapperModifiers.lineBottom(theme)}
+
+    ${lineLeft && wrapperModifiers.lineLeft(theme, lineColor)}
+    ${lineBottom && wrapperModifiers.lineBottom(theme, lineColor)}
+    ${!!size && wrapperModifiers[size](theme)}
   `}
 `
