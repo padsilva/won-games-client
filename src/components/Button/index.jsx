@@ -19,7 +19,8 @@ Button.propTypes = {
   children: PropTypes.elementType,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   fullWidth: PropTypes.bool,
-  icon: PropTypes.element
+  icon: PropTypes.element,
+  as: PropTypes.elementType
 }
 
 export default Button
