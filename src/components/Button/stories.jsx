@@ -20,9 +20,9 @@ Default.args = {
   children: 'Buy Now'
 }
 
-export const withIcon = (args) => <Button {...args} />
+export const WithIcon = (args) => <Button {...args} />
 
-withIcon.args = {
+WithIcon.args = {
   size: 'small',
   children: 'Buy Now',
   icon: <AddShoppingCart />
