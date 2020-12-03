@@ -4,5 +4,5 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.js(x)?', '!src/**/stories.jsx'],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.js'],
-  modulePaths: ['<rootDir>/src/']
+  modulePaths: ['<rootDir>/src/', '<rootDir>/.jest/']
 }
