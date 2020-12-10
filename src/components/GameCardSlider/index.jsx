@@ -57,7 +57,7 @@ const GameCardSlider = ({ items, color = 'white' }) => (
 )
 
 GameCardSlider.propTypes = {
-  items: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
   color: PropTypes.oneOf(['white', 'black'])
 }
 
