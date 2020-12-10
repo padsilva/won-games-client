@@ -1,7 +1,7 @@
 import Checkbox from '.'
 
 export default {
-  title: 'Checkbox',
+  title: 'Form/Checkbox',
   component: Checkbox,
   parameters: {
     layout: 'fullscreen',

@@ -1,7 +1,7 @@
 import Radio from '.'
 
 export default {
-  title: 'Radio',
+  title: 'Form/Radio',
   component: Radio,
   parameters: {
     layout: 'fullscreen',
