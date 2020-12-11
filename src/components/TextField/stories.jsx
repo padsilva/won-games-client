@@ -24,13 +24,13 @@ export default {
 }
 
 export const Default = (args) => (
-  <div style={{ maxwidth: 300, padding: 15 }}>
+  <div style={{ maxWidth: 300, padding: 15 }}>
     <TextField {...args} />
   </div>
 )
 
 export const WithError = (args) => (
-  <div style={{ maxwidth: 300, padding: 15 }}>
+  <div style={{ maxWidth: 300, padding: 15 }}>
     <TextField {...args} />
   </div>
 )
