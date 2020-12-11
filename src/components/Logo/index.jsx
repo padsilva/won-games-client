@@ -2,7 +2,12 @@ import PropTypes from 'prop-types'
 
 import * as S from './styles'
 
-const Logo = ({ color = 'white', size = 'normal', hideOnMobile = false }) => (
+const Logo = ({
+  id = 'logo',
+  color = 'white',
+  size = 'normal',
+  hideOnMobile = false
+}) => (
   <S.Wrapper color={color} size={size} hideOnMobile={hideOnMobile}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +17,7 @@ const Logo = ({ color = 'white', size = 'normal', hideOnMobile = false }) => (
       aria-label="Won Games"
     >
       <path
-        fill="url(#paint0_linear)"
+        fill={`url(#paint_linear_${id})`}
         d="M.055 15.227L.019 35.872c-.008 4.796 5.336 7.663 9.327 5.004l20.596-13.722L50.49 40.947c3.982 2.672 9.335-.176 9.344-4.972l.034-19.997c.014-7.882-7.549-13.565-15.116-11.361l-.873.254a50.875 50.875 0 01-29.358-.27C7.351 2.366.068 7.716.055 15.226z"
       />
       <path
@@ -64,7 +69,7 @@ const Logo = ({ color = 'white', size = 'normal', hideOnMobile = false }) => (
       />
       <defs>
         <linearGradient
-          id="paint0_linear"
+          id={`paint_linear_${id}`}
           x1="29.159"
           x2="30.155"
           y1="-7.397"
@@ -81,6 +86,7 @@ const Logo = ({ color = 'white', size = 'normal', hideOnMobile = false }) => (
 )
 
 Logo.propTypes = {
+  id: PropTypes.string,
   color: PropTypes.oneOf(['black', 'white']),
   size: PropTypes.oneOf(['normal', 'large']),
   hideOnMobile: PropTypes.bool
