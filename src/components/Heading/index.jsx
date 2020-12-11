@@ -26,7 +26,7 @@ Heading.propTypes = {
   color: PropTypes.oneOf(['white', 'black']),
   lineLeft: PropTypes.bool,
   lineBottom: PropTypes.bool,
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['small', 'medium', 'huge']),
   lineColor: PropTypes.oneOf(['primary', 'secondary'])
 }
 
