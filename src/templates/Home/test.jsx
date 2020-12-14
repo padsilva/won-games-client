@@ -20,39 +20,49 @@ const props = {
   freeGames: [gamesMock[0]]
 }
 
+jest.mock('components/Menu', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="Mock Menu"></div>
+    }
+  }
+})
+
+jest.mock('components/BannerSlider', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="Mock BannerSlider"></div>
+    }
+  }
+})
+
+jest.mock('components/Showcase', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="Mock Showcase"></div>
+    }
+  }
+})
+
+jest.mock('components/Footer', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="Mock Footer"></div>
+    }
+  }
+})
+
 describe('<Home />', () => {
   it('should render the menu and footer', () => {
     renderWithTheme(<Home {...props} />)
 
-    // menu
-    expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
-
-    // footer
-    expect(
-      screen.getByRole('heading', { name: /follow us/i })
-    ).toBeInTheDocument()
-
-    // logos (menu + footer)
-    expect(screen.getAllByRole('img', { name: /won games/i })).toHaveLength(2)
-
-    expect(
-      screen.getByRole('heading', { name: /new releases/i })
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('heading', { name: /most populars/i })
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('heading', { name: /coming soon/i })
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('heading', { name: /free games/i })
-    ).toBeInTheDocument()
-
-    // banner
-    expect(screen.getAllByText(/defy death 1/i)).toHaveLength(1)
-    // card game ( 5 sections com 1 cards cada = 5x1 = 5)
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(5)
-    // highlight
-    expect(screen.getAllByText(/read dead is back/i)).toHaveLength(3)
+    expect(screen.getByTestId(/mock menu/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/mock bannerslider/i)).toBeInTheDocument()
+    expect(screen.getAllByTestId(/mock showcase/i)).toHaveLength(5)
+    expect(screen.getByTestId(/mock footer/i)).toBeInTheDocument()
   })
 })
