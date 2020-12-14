@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types'
 
+import Base from 'templates/Base'
 import { Container } from 'components/Container'
-import Footer from 'components/Footer'
-import Menu from 'components/Menu'
 import BannerSlider from 'components/BannerSlider'
+import Showcase from 'components/Showcase'
 
 import * as S from './styles'
-import Showcase from 'components/Showcase'
 
 const Home = ({
   banners,
@@ -19,9 +18,8 @@ const Home = ({
   freeHighlight,
   freeGames
 }) => (
-  <section>
+  <Base>
     <Container>
-      <Menu />
       <S.SectionBanner>
         <BannerSlider items={banners} />
       </S.SectionBanner>
@@ -43,13 +41,7 @@ const Home = ({
     </S.SectionUpcoming>
 
     <Showcase title="Free Games" highlight={freeHighlight} games={freeGames} />
-
-    <S.SectionFooter>
-      <Container>
-        <Footer />
-      </Container>
-    </S.SectionFooter>
-  </section>
+  </Base>
 )
 
 Home.propTypes = {
