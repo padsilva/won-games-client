@@ -40,8 +40,8 @@ describe('<Menu />', () => {
     expect(screen.queryByText(/my account/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/wishlist/i)).not.toBeInTheDocument()
 
-    expect(screen.getByText(/enter/i)).toBeInTheDocument()
-    expect(screen.getByText(/create account/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/sign in/i)).toHaveLength(2)
+    expect(screen.getByText(/sign up/i)).toBeInTheDocument()
   })
 
   it('should show wishlist and account when logged in', () => {
@@ -50,7 +50,7 @@ describe('<Menu />', () => {
     expect(screen.getByText(/my account/i)).toBeInTheDocument()
     expect(screen.getByText(/wishlist/i)).toBeInTheDocument()
 
-    expect(screen.queryByText(/enter/i)).not.toBeInTheDocument()
-    expect(screen.queryByText(/create account/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/sign in/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument()
   })
 })
