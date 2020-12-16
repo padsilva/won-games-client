@@ -1,4 +1,4 @@
-import { Email } from 'styled-icons/material-outlined'
+import { Email } from '@styled-icons/material-outlined'
 
 import TextField from '.'
 

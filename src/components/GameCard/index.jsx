@@ -5,7 +5,7 @@ import {
   AddShoppingCart,
   Favorite,
   FavoriteBorder
-} from 'styled-icons/material-outlined'
+} from '@styled-icons/material-outlined'
 
 import * as S from './styles'
 

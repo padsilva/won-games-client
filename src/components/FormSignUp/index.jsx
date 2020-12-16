@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { AccountCircle, Email, Lock } from 'styled-icons/material-outlined'
+import { AccountCircle, Email, Lock } from '@styled-icons/material-outlined'
 
 import Button from 'components/Button'
 import TextField from 'components/TextField'
