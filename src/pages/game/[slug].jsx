@@ -1,3 +1,5 @@
-const Index = () => <h1>Game!</h1>
+import Game from 'templates/Game'
+
+const Index = () => <Game />
 
 export default Index
