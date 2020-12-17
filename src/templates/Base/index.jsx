@@ -7,7 +7,7 @@ import Footer from 'components/Footer'
 import * as S from './styles'
 
 const Base = ({ children }) => (
-  <section>
+  <S.Wrapper>
     <Container>
       <Menu />
     </Container>
@@ -19,7 +19,7 @@ const Base = ({ children }) => (
         <Footer />
       </Container>
     </S.SectionFooter>
-  </section>
+  </S.Wrapper>
 )
 
 Base.propTypes = {
