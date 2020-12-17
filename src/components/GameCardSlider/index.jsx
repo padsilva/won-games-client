@@ -50,7 +50,7 @@ const GameCardSlider = ({ items, color = 'white' }) => (
   <S.Wrapper color={color}>
     <Slider settings={settings}>
       {items.map((item, index) => (
-        <GameCard key={index} {...item} />
+        <GameCard key={`card-${index}`} {...item} />
       ))}
     </Slider>
   </S.Wrapper>
