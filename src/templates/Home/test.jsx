@@ -20,23 +20,19 @@ const props = {
   freeGames: [gamesMock[0]]
 }
 
-jest.mock('components/BannerSlider', () => {
-  return {
-    __esModule: true,
-    default: function Mock() {
-      return <div data-testid="Mock BannerSlider"></div>
-    }
+jest.mock('components/BannerSlider', () => ({
+  __esModule: true,
+  default: function Mock() {
+    return <div data-testid="Mock BannerSlider"></div>
   }
-})
+}))
 
-jest.mock('components/Showcase', () => {
-  return {
-    __esModule: true,
-    default: function Mock() {
-      return <div data-testid="Mock Showcase"></div>
-    }
+jest.mock('components/Showcase', () => ({
+  __esModule: true,
+  default: function Mock() {
+    return <div data-testid="Mock Showcase"></div>
   }
-})
+}))
 
 describe('<Home />', () => {
   it('should render banner and showcases', () => {

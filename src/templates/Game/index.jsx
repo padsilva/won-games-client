@@ -1,15 +1,63 @@
+import PropTypes from 'prop-types'
+
 import Base from 'templates/Base'
+import GameInfo from 'components/GameInfo'
+import Gallery from 'components/Gallery'
+import TextContent from 'components/TextContent'
+import GameDetails from 'components/GameDetails'
+import Showcase from 'components/Showcase'
 
 import * as S from './styles'
 
-const Game = () => (
+const Game = ({
+  cover,
+  gameInfo,
+  gallery,
+  description,
+  details,
+  upcomingGames,
+  upcomingHighlight,
+  recommendedGames
+}) => (
   <Base>
-    <S.Cover
-      src="https://images.gog-statics.com/5643a7c831df452d29005caeca24c28cdbfaa6fbea5a9556b147ee26d325fa70_bg_crop_1366x655.jpg"
-      role="image"
-      aria-label="cover"
-    />
+    <S.Cover src={cover} role="image" aria-label="cover" />
+    <S.Main>
+      <S.SectionGameInfo>
+        <GameInfo {...gameInfo} />
+      </S.SectionGameInfo>
+
+      <S.SectionGallery>
+        {!!gallery && <Gallery items={gallery} />}
+      </S.SectionGallery>
+
+      <S.SectionDescription>
+        <TextContent title="Description" content={description} />
+      </S.SectionDescription>
+
+      <S.SectionGameDetails>
+        <GameDetails {...details} />
+      </S.SectionGameDetails>
+
+      <Showcase
+        title="Upcoming"
+        games={upcomingGames}
+        highlight={upcomingHighlight}
+      />
+
+      <Showcase title="Recommended" games={recommendedGames} />
+    </S.Main>
   </Base>
 )
+
+Game.propTypes = {
+  cover: PropTypes.string.isRequired,
+  gameInfo: PropTypes.object.isRequired,
+  gallery: PropTypes.array,
+  description: PropTypes.string.isRequired,
+  details: PropTypes.object.isRequired,
+  upcomingGames: PropTypes.array.isRequired,
+  upcomingHighlight: PropTypes.object.isRequired,
+  recommendedGames: PropTypes.array.isRequired
+}
 
 export default Game
