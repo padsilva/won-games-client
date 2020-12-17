@@ -8,6 +8,7 @@ import GameDetails from 'components/GameDetails'
 import Showcase from 'components/Showcase'
 
 import * as S from './styles'
+import { Divider } from 'components/Divider'
 
 const Game = ({
   cover,
@@ -36,6 +37,7 @@ const Game = ({
 
       <S.SectionGameDetails>
         <GameDetails {...details} />
+        <Divider />
       </S.SectionGameDetails>
 
       <Showcase
