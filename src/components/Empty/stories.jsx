@@ -4,7 +4,7 @@ export default {
   title: 'Empty',
   component: Empty,
   parameters: {
-    background: {
+    backgrounds: {
       default: 'won-dark'
     }
   }
