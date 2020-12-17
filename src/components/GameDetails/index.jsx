@@ -6,7 +6,14 @@ import MediaMatch from 'components/MediaMatch'
 
 import * as S from './styles'
 
-const GameDetails = ({ developer, releaseDate, platforms, rating, genres }) => {
+const GameDetails = ({
+  developer,
+  releaseDate,
+  platforms,
+  publisher,
+  rating,
+  genres
+}) => {
   const platformIcons = {
     linux: <Linux title="Linux" size={18} />,
     mac: <Apple title="Mac" size={18} />,
@@ -49,7 +56,7 @@ const GameDetails = ({ developer, releaseDate, platforms, rating, genres }) => {
 
         <S.Block>
           <S.Label>Publisher</S.Label>
-          <S.Description>2k</S.Description>
+          <S.Description>{publisher}</S.Description>
         </S.Block>
 
         <S.Block>
@@ -73,6 +80,7 @@ GameDetails.propTypes = {
   releaseDate: PropTypes.string.isRequired,
   platforms: PropTypes.arrayOf(PropTypes.oneOf(['linux', 'mac', 'windows']))
     .isRequired,
+  publisher: PropTypes.string.isRequired,
   rating: PropTypes.oneOf(['pegi0', 'pegi10', 'pegi14', 'pegi16', 'pegi18'])
     .isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired

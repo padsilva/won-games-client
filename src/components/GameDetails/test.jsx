@@ -37,10 +37,22 @@ describe('<GameDetails />', () => {
     expect(screen.getByRole('img', { name: /mac/i })).toBeInTheDocument()
   })
 
+  it('should render the developer', () => {
+    renderWithTheme(<GameDetails {...mockGame} />)
+
+    expect(screen.getByText(/different tales/i)).toBeInTheDocument()
+  })
+
   it('should render the formated date', () => {
     renderWithTheme(<GameDetails {...mockGame} />)
 
     expect(screen.getByText(/nov 21, 2020/i)).toBeInTheDocument()
+  })
+
+  it('should render the publisher', () => {
+    renderWithTheme(<GameDetails {...mockGame} />)
+
+    expect(screen.getByText(/walkabout/i)).toBeInTheDocument()
   })
 
   it('should render free rating when pegi0', () => {
