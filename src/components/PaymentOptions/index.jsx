@@ -65,7 +65,7 @@ PaymentOptions.propTypes = {
       number: PropTypes.string.isRequired
     })
   ),
-  handlePayment: PropTypes.func
+  handlePayment: PropTypes.func.isRequired
 }
 
 export default PaymentOptions
