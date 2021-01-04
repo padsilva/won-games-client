@@ -5,7 +5,7 @@ import * as S from './styles'
 
 const CardsList = ({ cards }) => (
   <>
-    <Heading lineBottom color="black">
+    <Heading lineBottom color="black" size="small">
       Cards
     </Heading>
 
