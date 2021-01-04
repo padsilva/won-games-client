@@ -5,7 +5,7 @@ import * as S from './styles'
 const TextField = ({
   onInput,
   label,
-  labelFor = '',
+  name,
   initialValue = '',
   icon,
   iconPosition = 'left',
@@ -23,7 +23,7 @@ const TextField = ({
 
   return (
     <S.Wrapper disabled={disabled} error={!!error}>
-      {!!label && <S.Label htmlFor={labelFor}>{label}</S.Label>}
+      {!!label && <S.Label htmlFor={name}>{label}</S.Label>}
       <S.InputWrapper>
         {!!icon && <S.Icon iconPosition={iconPosition}>{icon}</S.Icon>}
         <S.Input
@@ -32,6 +32,8 @@ const TextField = ({
           value={value}
           iconPosition={iconPosition}
           disabled={disabled}
+          name={name}
+          {...(label ? { id: name } : {})}
           {...props}
         />
       </S.InputWrapper>
@@ -43,7 +45,7 @@ const TextField = ({
 TextField.propTypes = {
   onInput: PropTypes.func,
   label: PropTypes.string,
-  labelFor: PropTypes.string,
+  name: PropTypes.string,
   initialValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   icon: PropTypes.element,
   iconPosition: PropTypes.oneOf(['left', 'right']),
