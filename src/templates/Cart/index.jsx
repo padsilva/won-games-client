@@ -36,7 +36,7 @@ const Cart = ({
         ) : (
           <Empty
             title="Your cart is empty."
-            description="Go back to the store and explore greate games and offers"
+            description="Go back to the store and explore great games and offers"
             hasLink
           />
         )}
