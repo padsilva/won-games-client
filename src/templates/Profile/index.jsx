@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 
 import Base from 'templates/Base'
@@ -7,20 +8,24 @@ import ProfileMenu from 'components/ProfileMenu'
 
 import * as S from './styles'
 
-const Profile = ({ children }) => (
-  <Base>
-    <Container>
-      <Heading lineLeft lineColor="secondary">
-        My Account
-      </Heading>
+const Profile = ({ children }) => {
+  const { asPath } = useRouter()
 
-      <S.Main>
-        <ProfileMenu />
-        <S.Content>{children}</S.Content>
-      </S.Main>
-    </Container>
-  </Base>
-)
+  return (
+    <Base>
+      <Container>
+        <Heading lineLeft lineColor="secondary">
+          My Account
+        </Heading>
+
+        <S.Main>
+          <ProfileMenu activeLink={asPath} />
+          <S.Content>{children}</S.Content>
+        </S.Main>
+      </Container>
+    </Base>
+  )
+}
 
 Profile.propTypes = {
   children: PropTypes.node.isRequired

@@ -1,14 +1,23 @@
+import 'match-media-mock'
 import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/tests/helpers'
 
 import Profile from '.'
 
-describe('<Profile />', () => {
-  it('should render the heading', () => {
-    renderWithTheme(<Profile />)
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(() => ({ asPath: '/profile/me' }))
+}))
 
-    expect(
-      screen.getByRole('heading', { name: /my account/i })
-    ).toBeInTheDocument()
+jest.mock('components/ProfileMenu', () => ({
+  __esModule: true,
+  default: function Mock() {
+    return <div data-testid="Mock ProfileMenu" />
+  }
+}))
+
+describe('<Profile />', () => {
+  it('should render sections', () => {
+    renderWithTheme(<Profile />)
+    expect(screen.getByTestId('Mock ProfileMenu')).toBeInTheDocument()
   })
 })
