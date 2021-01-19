@@ -16,4 +16,10 @@ describe('<CartList />', () => {
 
     expect(container.firstChild).toMatchSnapshot()
   })
+
+  it('should render the button', () => {
+    renderWithTheme(<CartList items={mockItems} total="119,98€" hasButton />)
+
+    expect(screen.getByText(/buy now/i)).toBeInTheDocument()
+  })
 })

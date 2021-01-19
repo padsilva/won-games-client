@@ -26,3 +26,9 @@ export const Default = (args) => (
     <CartList {...args} />
   </div>
 )
+
+export const WithButton = (args) => (
+  <div style={{ maxWidth: 800 }}>
+    <CartList {...args} hasButton />
+  </div>
+)
