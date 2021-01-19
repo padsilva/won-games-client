@@ -12,3 +12,8 @@ export default {
 }
 
 export const Default = (args) => <Menu {...args} />
+
+export const Logged = (args) => <Menu {...args} />
+Logged.args = {
+  username: 'Paulo Silva'
+}

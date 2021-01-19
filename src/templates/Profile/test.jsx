@@ -17,7 +17,7 @@ jest.mock('components/ProfileMenu', () => ({
 
 describe('<Profile />', () => {
   it('should render sections', () => {
-    renderWithTheme(<Profile />)
+    renderWithTheme(<Profile>Lorem Ipsum</Profile>)
     expect(screen.getByTestId('Mock ProfileMenu')).toBeInTheDocument()
   })
 })
