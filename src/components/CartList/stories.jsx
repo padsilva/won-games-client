@@ -32,3 +32,9 @@ export const WithButton = (args) => (
     <CartList {...args} hasButton />
   </div>
 )
+
+export const Empty = () => (
+  <div style={{ maxWidth: 800 }}>
+    <CartList />
+  </div>
+)

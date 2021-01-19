@@ -26,3 +26,9 @@ export const Default = (args) => (
     <CartDropdown {...args} />
   </div>
 )
+
+export const Empty = () => (
+  <div style={{ maxWidth: '98%', display: 'flex', justifyContent: 'flex-end' }}>
+    <CartDropdown />
+  </div>
+)
