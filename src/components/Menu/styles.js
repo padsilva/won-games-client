@@ -42,10 +42,10 @@ export const MenuGroup = styled.div`
 `
 
 export const MenuNav = styled.div`
-  ${media.greaterThan('medium')`
-    ${({ theme }) => css`
-      margin-left: ${theme.spacings.small};
-    `}
+  ${({ theme }) => css`
+    ${media.greaterThan('medium')`
+			margin-left: ${theme.spacings.small};
+		`}
   `}
 `
 
@@ -86,8 +86,8 @@ export const MenuFull = styled.nav`
   ${({ theme, isOpen }) => css`
     display: flex;
     flex-direction: column;
-    background: ${theme.colors.white};
     justify-content: space-between;
+    background: ${theme.colors.white};
     position: fixed;
     z-index: ${theme.layers.menu};
     top: 0;
@@ -107,7 +107,7 @@ export const MenuFull = styled.nav`
       margin: ${theme.spacings.xsmall};
       cursor: pointer;
       width: 2.4rem;
-      heigth: 2.4rem;
+      height: 2.4rem;
     }
 
     ${MenuNav} {

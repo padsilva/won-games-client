@@ -21,7 +21,7 @@ const GamesTemplate = ({ games = [], filterItems }) => {
         <section>
           <Grid>
             {games.map((item) => (
-              <GameCard key={item.title} {...item} />
+              <GameCard key={item.slug} {...item} />
             ))}
           </Grid>
 

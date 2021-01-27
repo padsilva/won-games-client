@@ -36,12 +36,12 @@ export const Content = styled.div`
 const wrapperModifiers = {
   open: () => css`
     opacity: 1;
-    pointer-event: auto;
+    pointer-events: auto;
     transform: translateY(0);
   `,
   close: () => css`
     opacity: 0;
-    pointer-event: none;
+    pointer-events: none;
     transform: translateY(-2rem);
   `
 }
@@ -53,8 +53,8 @@ export const Wrapper = styled.div`
 
     ${Content} {
       transition: transform 0.2s ease-in, opacity ${theme.transition.default};
-
-      ${isOpen ? wrapperModifiers.open() : wrapperModifiers.close()}
+      ${isOpen && wrapperModifiers.open()}
+      ${!isOpen && wrapperModifiers.close()}
     }
   `}
 `
