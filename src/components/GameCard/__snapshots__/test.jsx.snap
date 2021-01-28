@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<GameCard /> should render correctly 1`] = `
+.c7 {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
 .c10 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -36,12 +42,6 @@ exports[`<GameCard /> should render correctly 1`] = `
 
 .c10 svg + span {
   margin-left: 0.8rem;
-}
-
-.c7 {
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
 }
 
 .c0 {
@@ -214,7 +214,7 @@ exports[`<GameCard /> should render correctly 1`] = `
       <div
         class="c9"
       >
-        27,99 €
+        €27.99
       </div>
       <button
         class="c10"

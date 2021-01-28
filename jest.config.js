@@ -6,7 +6,8 @@ module.exports = {
     'src/**/*.js(x)?',
     '!src/**/stories.jsx',
     '!src/pages/**/*.jsx',
-    '!src/styles/**/*.js'
+    '!src/styles/**/*.js',
+    '!src/utils/apollo.js'
   ],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.js'],
   modulePaths: ['<rootDir>/src/', '<rootDir>/.jest/']

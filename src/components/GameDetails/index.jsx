@@ -62,7 +62,7 @@ const GameDetails = ({
         <S.Block>
           <S.Label>Rating</S.Label>
           <S.Description>
-            {rating === 'pegi0' ? 'FREE' : `${rating.replace('pegi', '')}+`}
+            {rating === 'free' ? 'FREE' : `${rating.replace('pegi', '')}+`}
           </S.Description>
         </S.Block>
 
@@ -81,8 +81,14 @@ GameDetails.propTypes = {
   platforms: PropTypes.arrayOf(PropTypes.oneOf(['linux', 'mac', 'windows']))
     .isRequired,
   publisher: PropTypes.string.isRequired,
-  rating: PropTypes.oneOf(['pegi0', 'pegi10', 'pegi14', 'pegi16', 'pegi18'])
-    .isRequired,
+  rating: PropTypes.oneOf([
+    'free',
+    'pegi3',
+    'pegi7',
+    'pegi12',
+    'pegi16',
+    'pegi18'
+  ]).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 

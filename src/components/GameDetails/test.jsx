@@ -55,13 +55,13 @@ describe('<GameDetails />', () => {
     expect(screen.getByText(/walkabout/i)).toBeInTheDocument()
   })
 
-  it('should render free rating when pegi0', () => {
+  it('should render free rating when free', () => {
     renderWithTheme(<GameDetails {...mockGame} />)
 
     expect(screen.getByText(/free/i)).toBeInTheDocument()
   })
 
-  it('should render 18+ rating when pegi18', () => {
+  it('should render 16+ rating when pegi16', () => {
     renderWithTheme(<GameDetails {...mockGame} rating="pegi16" />)
 
     expect(screen.getByText(/16\+/i)).toBeInTheDocument()

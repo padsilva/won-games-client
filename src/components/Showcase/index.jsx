@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import GameCardSlider from 'components/GameCardSlider'
 import Heading from 'components/Heading'
 import Highlight from 'components/Highlight'
+
 import * as S from './styles'
 
 const Showcase = ({ title, highlight, games }) => (

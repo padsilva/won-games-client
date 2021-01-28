@@ -8,8 +8,8 @@ export default {
     title: 'Population Zero',
     developer: 'Rockstar Games',
     img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: '27,99 €',
-    promotionalPrice: '19,99 €'
+    price: 27.99,
+    promotionalPrice: 19.99
   },
   argTypes: {
     onFav: {
