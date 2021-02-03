@@ -9,12 +9,15 @@ import * as S from './styles'
 
 const Home = ({
   banners,
+  newTitle,
   newGames,
+  mostPopularTitle,
   mostPopularHighlight,
   mostPopularGames,
-  upcomingGames,
+  upcomingTitle,
   upcomingHighlight,
-  upcomingMoreGames,
+  upcomingGames,
+  freeTitle,
   freeHighlight,
   freeGames
 }) => (
@@ -26,34 +29,38 @@ const Home = ({
     </Container>
 
     <S.SectionNews>
-      <Showcase title="New Releases" games={newGames} />
+      <Showcase title={newTitle} games={newGames} color="black" />
     </S.SectionNews>
 
     <Showcase
-      title="Most Populars"
+      title={mostPopularTitle}
       highlight={mostPopularHighlight}
       games={mostPopularGames}
     />
 
-    <S.SectionUpcoming>
-      <Showcase title="Coming Soon" games={upcomingGames} />
-      <Showcase highlight={upcomingHighlight} games={upcomingMoreGames} />
-    </S.SectionUpcoming>
+    <Showcase
+      title={upcomingTitle}
+      games={upcomingGames}
+      highlight={upcomingHighlight}
+    />
 
-    <Showcase title="Free Games" highlight={freeHighlight} games={freeGames} />
+    <Showcase title={freeTitle} highlight={freeHighlight} games={freeGames} />
   </Base>
 )
 
 Home.propTypes = {
   banners: PropTypes.array.isRequired,
+  newTitle: PropTypes.string.isRequired,
   newGames: PropTypes.array.isRequired,
+  mostPopularTitle: PropTypes.string.isRequired,
   mostPopularHighlight: PropTypes.object.isRequired,
   mostPopularGames: PropTypes.array.isRequired,
-  upcomingGames: PropTypes.array.isRequired,
+  upcomingTitle: PropTypes.string.isRequired,
   upcomingHighlight: PropTypes.object.isRequired,
-  upcomingMoreGames: PropTypes.array.isRequired,
-  freeGames: PropTypes.array.isRequired,
-  freeHighlight: PropTypes.object.isRequired
+  upcomingGames: PropTypes.array.isRequired,
+  freeTitle: PropTypes.string.isRequired,
+  freeHighlight: PropTypes.object.isRequired,
+  freeGames: PropTypes.array.isRequired
 }
 
 export default Home

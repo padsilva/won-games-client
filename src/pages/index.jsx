@@ -1,9 +1,7 @@
 import Home from 'templates/Home'
-
-import gamesMock from 'components/GameCardSlider/mock'
-import highlightMock from 'components/Highlight/mock'
 import { initializeApollo } from 'utils/apollo'
 import { QUERY_HOME } from 'graphql/queries/home'
+import { bannerMapper, gamesMapper, highlightMapper } from 'utils/mappers'
 
 const Index = (props) => <Home {...props} />
 
@@ -12,35 +10,34 @@ const Index = (props) => <Home {...props} />
 // getInitialProps => gera via SSR a cada request (vai para o client, faz hydrate do lado do client depois do 1 request)
 export const getServerSideProps = async () => {
   const apolloClient = initializeApollo()
+  const TODAY = new Date().toISOString().slice(0, 10)
 
-  const { data } = await apolloClient.query({
+  const {
+    data: { banners, newGames, upcomingGames, freeGames, sections }
+  } = await apolloClient.query({
     query: QUERY_HOME,
-    variables: { limit: 9 }
+    variables: {
+      date: TODAY,
+      limit: 8,
+      price: 0
+    }
   })
 
   return {
     props: {
       revalidate: 10,
-      banners: data.banners.map((banner) => ({
-        img: `http://localhost:1337${banner.image.url}`,
-        title: banner.title,
-        subtitle: banner.subtitle,
-        buttonLabel: banner.button.label,
-        buttonLink: banner.button.link,
-        ...(banner.ribbon && {
-          ribbon: banner.ribbon.text,
-          ribbonColor: banner.ribbon.color,
-          ribbonSize: banner.ribbon.size
-        })
-      })),
-      newGames: gamesMock,
-      mostPopularHighlight: highlightMock,
-      mostPopularGames: gamesMock,
-      upcomingGames: gamesMock,
-      upcomingHighlight: highlightMock,
-      upcomingMoreGames: gamesMock,
-      freeHighlight: highlightMock,
-      freeGames: gamesMock
+      banners: bannerMapper(banners),
+      newTitle: sections.newGames.title,
+      newGames: gamesMapper(newGames),
+      mostPopularTitle: sections.popularGames.title,
+      mostPopularHighlight: highlightMapper(sections.popularGames.highlight),
+      mostPopularGames: gamesMapper(sections.popularGames.games),
+      upcomingTitle: sections.upcomingGames.title,
+      upcomingHighlight: highlightMapper(sections.upcomingGames.highlight),
+      upcomingGames: gamesMapper(upcomingGames),
+      freeTitle: sections.freeGames.title,
+      freeHighlight: highlightMapper(sections.freeGames.highlight),
+      freeGames: gamesMapper(freeGames)
     }
   }
 }
