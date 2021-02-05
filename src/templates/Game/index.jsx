@@ -16,8 +16,10 @@ const Game = ({
   gallery,
   description,
   details,
+  upcomingTitle,
   upcomingGames,
   upcomingHighlight,
+  recommendedTitle,
   recommendedGames
 }) => (
   <Base>
@@ -41,12 +43,12 @@ const Game = ({
       </S.SectionGameDetails>
 
       <Showcase
-        title="Upcoming"
+        title={upcomingTitle}
         games={upcomingGames}
         highlight={upcomingHighlight}
       />
 
-      <Showcase title="Recommended" games={recommendedGames} />
+      <Showcase title={recommendedTitle} games={recommendedGames} />
     </S.Main>
   </Base>
 )
@@ -57,8 +59,10 @@ Game.propTypes = {
   gallery: PropTypes.array,
   description: PropTypes.string.isRequired,
   details: PropTypes.object.isRequired,
+  upcomingTitle: PropTypes.string.isRequired,
   upcomingGames: PropTypes.array.isRequired,
   upcomingHighlight: PropTypes.object.isRequired,
+  recommendedTitle: PropTypes.string.isRequired,
   recommendedGames: PropTypes.array.isRequired
 }
 

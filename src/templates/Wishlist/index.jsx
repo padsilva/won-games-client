@@ -9,7 +9,12 @@ import { Divider } from 'components/Divider'
 import Empty from 'components/Empty'
 import Showcase from 'components/Showcase'
 
-const Wishlist = ({ games, recommendedGames, recommendedHighlight }) => (
+const Wishlist = ({
+  games,
+  recommendedTitle,
+  recommendedGames,
+  recommendedHighlight
+}) => (
   <Base>
     <Container>
       <Heading lineLeft lineColor="secondary">
@@ -34,7 +39,7 @@ const Wishlist = ({ games, recommendedGames, recommendedHighlight }) => (
     </Container>
 
     <Showcase
-      title="Recommended"
+      title={recommendedTitle}
       games={recommendedGames}
       highlight={recommendedHighlight}
     />
@@ -43,6 +48,7 @@ const Wishlist = ({ games, recommendedGames, recommendedHighlight }) => (
 
 Wishlist.propTypes = {
   games: PropTypes.array,
+  recommendedTitle: PropTypes.string.isRequired,
   recommendedGames: PropTypes.array.isRequired,
   recommendedHighlight: PropTypes.object.isRequired
 }

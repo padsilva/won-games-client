@@ -17,8 +17,10 @@ const props = {
   gallery: galleryMock,
   description: '<h1>Custom HTML</h1>',
   details: gameDetailsMock,
+  upcomingTitle: 'Upcoming',
   upcomingGames: gamesMock,
   upcomingHighlight: highlightMock,
+  recommendedTitle: 'Recommended',
   recommendedGames: gamesMock
 }
 

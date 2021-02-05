@@ -15,6 +15,7 @@ const Cart = ({
   items,
   total,
   cards,
+  recommendedTitle,
   recommendedGames,
   recommendedHighlight
 }) => {
@@ -45,7 +46,7 @@ const Cart = ({
       </Container>
 
       <Showcase
-        title="Recommended"
+        title={recommendedTitle}
         games={recommendedGames}
         highlight={recommendedHighlight}
       />
@@ -57,6 +58,7 @@ Cart.propTypes = {
   items: PropTypes.array.isRequired,
   total: PropTypes.string.isRequired,
   cards: PropTypes.array.isRequired,
+  recommendedTitle: PropTypes.string.isRequired,
   recommendedGames: PropTypes.array.isRequired,
   recommendedHighlight: PropTypes.object.isRequired
 }

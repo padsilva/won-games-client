@@ -2,10 +2,11 @@ import { useRouter } from 'next/router'
 
 import Game from 'templates/Game'
 
-import gamesMock from 'components/GameCardSlider/mock'
-import highlightMock from 'components/Highlight/mock'
 import { initializeApollo } from 'utils/apollo'
 import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from 'graphql/queries/games'
+import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
+import { gamesMapper, highlightMapper } from 'utils/mappers'
+import { QUERY_UPCOMING } from 'graphql/queries/upcoming'
 
 const apolloClient = initializeApollo()
 
@@ -31,14 +32,32 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params }) => {
+  // get game data
   const { data } = await apolloClient.query({
     query: QUERY_GAME_BY_SLUG,
     variables: { slug: `${params?.slug}` }
   })
 
-  if (!data.games.length) return { notFound: true }
+  if (!data.games.length) {
+    return { notFound: true }
+  }
 
   const game = data.games[0]
+
+  // get recommended data
+  const { data: recommendedData } = await apolloClient.query({
+    query: QUERY_RECOMMENDED
+  })
+
+  // get upcoming data
+  const TODAY = new Date().toISOString().slice(0, 10)
+  const { data: upcomingData } = await apolloClient.query({
+    query: QUERY_UPCOMING,
+    variables: {
+      date: TODAY,
+      limit: 8
+    }
+  })
 
   return {
     props: {
@@ -62,9 +81,13 @@ export const getStaticProps = async ({ params }) => {
         rating: game.rating,
         genres: game.categories.map((category) => category.name)
       },
-      upcomingGames: gamesMock,
-      upcomingHighlight: highlightMock,
-      recommendedGames: gamesMock
+      upcomingTitle: upcomingData.showcase.upcomingGames.title,
+      upcomingGames: gamesMapper(upcomingData.upcomingGames),
+      upcomingHighlight: highlightMapper(
+        upcomingData.showcase.upcomingGames.highlight
+      ),
+      recommendedTitle: recommendedData.recommended.sections.title,
+      recommendedGames: gamesMapper(recommendedData.recommended.sections.games)
     }
   }
 }
