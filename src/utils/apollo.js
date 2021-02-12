@@ -11,7 +11,7 @@ const createApolloClient = () =>
     cache: apolloCache
   })
 
-export const initializeApollo = (initialState = {}) => {
+export const initializeApollo = (initialState = null) => {
   const apolloClientGlobal = apolloClient ?? createApolloClient()
 
   if (initialState) {
@@ -25,7 +25,7 @@ export const initializeApollo = (initialState = {}) => {
   return apolloClient
 }
 
-export const useApollo = (initialState) => {
+export const useApollo = (initialState = null) => {
   const store = useMemo(() => initializeApollo(initialState), [initialState])
   return store
 }
