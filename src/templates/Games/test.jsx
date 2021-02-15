@@ -5,7 +5,7 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import filterItemsMock from 'components/ExploreSidebar/mock'
 
 import Games from '.'
-import { fetchMoreMock, gamesMock } from './mocks'
+import { fetchMoreMock, gamesMock, noGamesMock } from './mocks'
 import apolloCache from 'utils/apolloCache'
 import userEvent from '@testing-library/user-event'
 
@@ -43,6 +43,18 @@ describe('<Games />', () => {
 
     expect(
       await screen.findByRole('button', { name: /show more/i })
+    ).toBeInTheDocument()
+  })
+
+  it('should render empty when no games found', async () => {
+    renderWithTheme(
+      <MockedProvider mocks={[noGamesMock]} addTypename={false}>
+        <Games filterItems={filterItemsMock} />
+      </MockedProvider>
+    )
+
+    expect(
+      await screen.findByText(/We didn't find any games with this filter/i)
     ).toBeInTheDocument()
   })
 
