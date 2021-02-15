@@ -70,7 +70,7 @@ const ExploreSidebar = ({ items, initialValues = {}, onFilter }) => {
                   id={field.name}
                   name={item.name}
                   label={field.label}
-                  labelFor={field.name}
+                  labelFor={String(field.name)}
                   value={field.name}
                   defaultChecked={
                     String(field.name) === String(values[item.name])
@@ -100,7 +100,8 @@ ExploreSidebar.propTypes = {
       fields: PropTypes.arrayOf(
         PropTypes.shape({
           label: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired
+          name: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            .isRequired
         })
       ).isRequired
     }).isRequired
