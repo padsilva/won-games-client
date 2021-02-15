@@ -6,7 +6,8 @@ export default {
   title: 'ExploreSidebar',
   component: ExploreSidebar,
   args: {
-    items: itemsMock
+    items: itemsMock,
+    onFilter: () => console.log('yey')
   },
   parameters: {
     backgrounds: {
@@ -25,7 +26,10 @@ export const WithInitialValues = (args) => (
   <div style={{ padding: 16, maxWidth: 320 }}>
     <ExploreSidebar
       {...args}
-      initialValues={{ windows: true, sort_by: 'low-to-high' }}
+      initialValues={{
+        platforms: ['windows', 'linux'],
+        sort_by: 'low-to-high'
+      }}
     />
   </div>
 )

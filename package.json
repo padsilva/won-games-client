@@ -31,6 +31,7 @@
     "@styled-icons/material-outlined": "^10.18.0",
     "@styled-icons/remix-fill": "^10.18.0",
     "graphql": "^15.4.0",
+    "lodash": "^4.17.20",
     "next": "10.0.3",
     "next-pwa": "^3.1.5",
     "polished": "^4.0.5",
