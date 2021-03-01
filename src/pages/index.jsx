@@ -8,7 +8,7 @@ const Index = (props) => <Home {...props} />
 // getStaticProps => gera os estáticos em build time (tal como no gatsby)
 // getServerSideProps => gera via SSR a cada request (nunca vai para o bundle do client, o bundle.js acaba por ficar menor)
 // getInitialProps => gera via SSR a cada request (vai para o client, faz hydrate do lado do client depois do 1 request)
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const apolloClient = initializeApollo()
   const TODAY = new Date().toISOString().slice(0, 10)
 
@@ -20,12 +20,13 @@ export const getServerSideProps = async () => {
       date: TODAY,
       limit: 8,
       price: 0
-    }
+    },
+    fetchPolicy: 'no-cache' // garante que os dados estão sempre actualizados quanto se gera o estático
   })
 
   return {
+    revalidate: 10,
     props: {
-      revalidate: 10,
       banners: bannerMapper(banners),
       newTitle: sections.newGames.title,
       newGames: gamesMapper(newGames),

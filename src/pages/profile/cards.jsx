@@ -3,10 +3,18 @@ import CardsList from 'components/CardsList'
 
 import cardsMock from 'components/PaymentOptions/mock'
 
-const Cards = () => (
+const Cards = (props) => (
   <Profile>
-    <CardsList cards={cardsMock} />
+    <CardsList {...props} />
   </Profile>
 )
+
+export function getServerSideProps() {
+  return {
+    props: {
+      cards: cardsMock
+    }
+  }
+}
 
 export default Cards
