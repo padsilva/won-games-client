@@ -5,6 +5,11 @@ import GameCardSlider from '.'
 import items from './mock'
 
 describe('<GameCardSlider />', () => {
+  it('should render with 4 active items', () => {
+    const { container } = renderWithTheme(<GameCardSlider items={items} />)
+    expect(container.querySelectorAll('.slick-active')).toHaveLength(4)
+  })
+
   it('should render white arrows if color passed', () => {
     renderWithTheme(<GameCardSlider items={items} color="white" />)
 
