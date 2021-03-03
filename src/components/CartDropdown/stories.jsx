@@ -1,14 +1,10 @@
 import CartDropdown from '.'
 
-import mockItems from 'components/CartList/mock'
+import items from 'components/CartList/mock'
 
 export default {
   title: 'CartDropdown',
   component: CartDropdown,
-  args: {
-    items: mockItems,
-    total: '119,98€'
-  },
   argTypes: {
     items: {
       type: ''
@@ -26,6 +22,13 @@ export const Default = (args) => (
     <CartDropdown {...args} />
   </div>
 )
+Default.args = {
+  cartContextValue: {
+    items,
+    quantity: items.length,
+    total: '€100.00'
+  }
+}
 
 export const Empty = () => (
   <div style={{ maxWidth: '98%', display: 'flex', justifyContent: 'flex-end' }}>
