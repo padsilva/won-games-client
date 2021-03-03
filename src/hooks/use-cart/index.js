@@ -8,7 +8,7 @@ import { cartMapper } from 'utils/mappers'
 
 const CART_KEY = 'cartItems'
 
-export const CartContext = createContext({
+export const CartContextDefaultValues = {
   items: [],
   quantity: 0,
   total: '€0.00',
@@ -17,7 +17,9 @@ export const CartContext = createContext({
   removeFromCart: () => null,
   clearCart: () => null,
   loading: false
-})
+}
+
+export const CartContext = createContext(CartContextDefaultValues)
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([])
