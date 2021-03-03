@@ -1,3 +1,5 @@
+import { formatPrice } from 'utils/formatPrice'
+
 export const bannerMapper = (banners) =>
   banners.map((banner) => ({
     img: `http://localhost:1337${banner.image.url}`,
@@ -36,3 +38,14 @@ export const highlightMapper = (highlight) =>
         alignment: highlight.alignment
       }
     : {}
+
+export const cartMapper = (games) => {
+  return games
+    ? games.map((game) => ({
+        id: game.id,
+        img: `http://localhost:1337${game.cover?.url}`,
+        title: game.name,
+        price: formatPrice(game.price)
+      }))
+    : []
+}

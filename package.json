@@ -47,6 +47,7 @@
     "@storybook/react": "^6.1.6",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
+    "@testing-library/react-hooks": "^5.1.0",
     "@testing-library/user-event": "^12.5.0",
     "apollo": "^2.32.1",
     "babel-loader": "^8.2.1",

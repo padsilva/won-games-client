@@ -1,7 +1,6 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
-
+import { render, screen } from 'utils/test-utils'
 import Banner from '.'
+
 const props = {
   img: 'https://source.unsplash.com/user/willianjusten/1042x580',
   title: 'Defy death',
@@ -12,7 +11,7 @@ const props = {
 
 describe('<Banner />', () => {
   it('should render correctly', () => {
-    const { container } = renderWithTheme(<Banner {...props} />)
+    const { container } = render(<Banner {...props} />)
 
     // verificar se o title está a ser renderizado
     expect(
@@ -31,7 +30,7 @@ describe('<Banner />', () => {
   })
 
   it('should render a Ribbon', () => {
-    renderWithTheme(
+    render(
       <Banner
         {...props}
         ribbon="My Ribbon"
