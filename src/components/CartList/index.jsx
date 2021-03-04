@@ -4,20 +4,27 @@ import Link from 'next/link'
 import Button from 'components/Button'
 import GameItem from 'components/GameItem'
 import Empty from 'components/Empty'
+import Loader from 'components/Loader'
 import { useCart } from 'hooks/use-cart'
 
 import * as S from './styles'
 
 const CartList = ({ hasButton = false }) => {
-  const { items, total } = useCart()
+  const { items, total, loading } = useCart()
 
-  return (
+  return loading ? (
+    <S.Loading>
+      <Loader />
+    </S.Loading>
+  ) : (
     <S.Wrapper isEmpty={!items.length}>
       {items.length ? (
         <>
-          {items.map((item) => (
-            <GameItem key={item.title} {...item} />
-          ))}
+          <S.GamesList>
+            {items.map((item) => (
+              <GameItem key={item.title} {...item} />
+            ))}
+          </S.GamesList>
 
           <S.Footer>
             {!hasButton && <span>Total:</span>}
