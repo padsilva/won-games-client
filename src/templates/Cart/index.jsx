@@ -5,15 +5,12 @@ import { Container } from 'components/Container'
 import Heading from 'components/Heading'
 import CartList from 'components/CartList'
 import PaymentOptions from 'components/PaymentOptions'
-import Empty from 'components/Empty'
 import { Divider } from 'components/Divider'
 import Showcase from 'components/Showcase'
 
 import * as S from './styles'
 
 const Cart = ({
-  items,
-  total,
   cards,
   recommendedTitle,
   recommendedGames,
@@ -28,19 +25,11 @@ const Cart = ({
           My Cart
         </Heading>
 
-        {items?.length > 0 ? (
-          <S.Content>
-            <CartList items={items} total={total} />
+        <S.Content>
+          <CartList />
 
-            <PaymentOptions cards={cards} handlePayment={handlePayment} />
-          </S.Content>
-        ) : (
-          <Empty
-            title="Your cart is empty."
-            description="Go back to the store and explore great games and offers"
-            hasLink
-          />
-        )}
+          <PaymentOptions cards={cards} handlePayment={handlePayment} />
+        </S.Content>
 
         <Divider />
       </Container>
@@ -55,8 +44,6 @@ const Cart = ({
 }
 
 Cart.propTypes = {
-  items: PropTypes.array.isRequired,
-  total: PropTypes.string.isRequired,
   cards: PropTypes.array.isRequired,
   recommendedTitle: PropTypes.string.isRequired,
   recommendedGames: PropTypes.array.isRequired,

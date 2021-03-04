@@ -32,7 +32,7 @@ const Button = forwardRef(
 Button.displayName = 'Button'
 
 Button.propTypes = {
-  children: PropTypes.elementType,
+  children: PropTypes.node,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   minimal: PropTypes.bool,
   fullWidth: PropTypes.bool,
