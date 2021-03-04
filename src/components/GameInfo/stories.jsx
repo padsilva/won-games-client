@@ -17,3 +17,12 @@ export const Default = (args) => (
     <GameInfo {...args} />
   </div>
 )
+
+export const IsInCart = (args) => (
+  <div style={{ maxWidth: '144rem', margin: 'auto', padding: '1.5rem' }}>
+    <GameInfo {...args} />
+  </div>
+)
+IsInCart.args = {
+  isInCart: () => true
+}
