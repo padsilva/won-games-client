@@ -1,18 +1,15 @@
 import PropTypes from 'prop-types'
 import Link from 'next/link'
-import {
-  AddShoppingCart,
-  Favorite,
-  FavoriteBorder
-} from '@styled-icons/material-outlined'
+import { Favorite, FavoriteBorder } from '@styled-icons/material-outlined'
 
-import Button from 'components/Button'
 import Ribbon from 'components/Ribbon'
+import CartButton from 'components/CartButton'
 import { formatPrice } from 'utils/formatPrice'
 
 import * as S from './styles'
 
 const GameCard = ({
+  id,
   slug,
   title,
   developer,
@@ -59,13 +56,14 @@ const GameCard = ({
           <S.Price isPromotional>{formatPrice(price)}</S.Price>
         )}
         <S.Price>{formatPrice(promotionalPrice || price)}</S.Price>
-        <Button icon={<AddShoppingCart />} size="small" />
+        <CartButton id={id} />
       </S.BuyBox>
     </S.Content>
   </S.Wrapper>
 )
 
 GameCard.propTypes = {
+  id: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   developer: PropTypes.string.isRequired,

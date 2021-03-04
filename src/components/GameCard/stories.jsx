@@ -32,6 +32,15 @@ export const Default = (args) => (
   </div>
 )
 
+export const IsInCart = (args) => (
+  <div style={{ width: '30rem' }}>
+    <GameCard {...args} />
+  </div>
+)
+IsInCart.args = {
+  isInCart: () => true
+}
+
 export const WithRibbon = (args) => (
   <div style={{ maxWidth: '30rem' }}>
     <GameCard {...args} />
