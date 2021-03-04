@@ -19,6 +19,8 @@ describe('setStorageItem()', () => {
   it('should add the item to localStorage', () => {
     setStorageItem('cartItems', ['1', '2'])
 
-    expect(getStorageItem('cartItems')).toStrictEqual(['1', '2'])
+    expect(window.localStorage.getItem('WONGAMES_cartItems')).toStrictEqual(
+      JSON.stringify(['1', '2'])
+    )
   })
 })
