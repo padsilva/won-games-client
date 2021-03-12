@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import Head from 'next/head'
+import NextNprogress from 'nextjs-progressbar'
 import { ThemeProvider } from 'styled-components'
 import { ApolloProvider } from '@apollo/client'
 
@@ -22,10 +23,16 @@ const App = ({ Component, pageProps }) => {
             <link rek="manifest" href="/manifest.json" />
             <meta
               name="description"
-              content="The best Game Stores in the world!"
+              content="The best game store in the world!"
             />
           </Head>
           <GlobalStyles />
+          <NextNprogress
+            color={theme.colors.primary}
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={5}
+          />
           <Component {...pageProps} />
         </CartProvider>
       </ThemeProvider>
