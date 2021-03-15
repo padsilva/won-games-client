@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { useSession } from 'next-auth/client'
 
 import { Container } from 'components/Container'
 import Menu from 'components/Menu'
@@ -6,21 +7,25 @@ import Footer from 'components/Footer'
 
 import * as S from './styles'
 
-const Base = ({ children }) => (
-  <S.Wrapper>
-    <Container>
-      <Menu />
-    </Container>
+const Base = ({ children }) => {
+  const [session] = useSession()
 
-    <S.Content>{children}</S.Content>
-
-    <S.SectionFooter>
+  return (
+    <S.Wrapper>
       <Container>
-        <Footer />
+        <Menu username={session?.user.name} />
       </Container>
-    </S.SectionFooter>
-  </S.Wrapper>
-)
+
+      <S.Content>{children}</S.Content>
+
+      <S.SectionFooter>
+        <Container>
+          <Footer />
+        </Container>
+      </S.SectionFooter>
+    </S.Wrapper>
+  )
+}
 
 Base.propTypes = {
   children: PropTypes.node.isRequired
