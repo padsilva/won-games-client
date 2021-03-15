@@ -30,6 +30,7 @@ const linkModifiers = {
 
 export const Link = styled.a`
   ${({ theme, isActive }) => css`
+    cursor: pointer;
     text-decoration: none;
     display: flex;
     align-items: center;
