@@ -10,6 +10,14 @@ const props = {
   recommendedHighlight: highlightMock
 }
 
+jest.mock('templates/Base', () => ({
+  __esModule: true,
+  // eslint-disable-next-line react/prop-types
+  default: function Mock({ children }) {
+    return <div data-testid="Mock Base">{children}</div>
+  }
+}))
+
 jest.mock('components/Showcase', () => ({
   __esModule: true,
   default: function Mock() {

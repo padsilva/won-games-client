@@ -13,6 +13,14 @@ const props = {
   recommendedGames: gamesMock
 }
 
+jest.mock('templates/Base', () => ({
+  __esModule: true,
+  // eslint-disable-next-line react/prop-types
+  default: function Mock({ children }) {
+    return <div data-testid="Mock Base">{children}</div>
+  }
+}))
+
 jest.mock('components/Showcase', () => ({
   __esModule: true,
   default: function Mock() {
@@ -34,6 +42,13 @@ jest.mock('components/PaymentOptions', () => ({
   }
 }))
 
+jest.mock('components/Empty', () => ({
+  __esModule: true,
+  default: function Mock() {
+    return <div data-testid="Mock Empty" />
+  }
+}))
+
 describe('<Cart />', () => {
   it('should render sections', () => {
     render(<Cart {...props} />)
@@ -41,8 +56,9 @@ describe('<Cart />', () => {
     expect(
       screen.getByRole('heading', { name: /my cart/i })
     ).toBeInTheDocument()
-    expect(screen.getAllByTestId('Mock Cart')).toHaveLength(2)
+    expect(screen.getByTestId('Mock Cart')).toBeInTheDocument()
     expect(screen.getByTestId('Mock PaymentOptions')).toBeInTheDocument()
     expect(screen.getByTestId('Mock Showcase')).toBeInTheDocument()
+    expect(screen.queryByTestId('Mock Empty')).not.toBeInTheDocument()
   })
 })

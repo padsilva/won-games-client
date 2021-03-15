@@ -20,6 +20,14 @@ const props = {
   recommendedGames: gamesMock
 }
 
+jest.mock('templates/Base', () => ({
+  __esModule: true,
+  // eslint-disable-next-line react/prop-types
+  default: function Mock({ children }) {
+    return <div data-testid="Mock Base">{children}</div>
+  }
+}))
+
 jest.mock('components/Menu', () => ({
   __esModule: true,
   default: function Mock() {
@@ -59,7 +67,6 @@ describe('<Game />', () => {
   it('should render the template with components', () => {
     render(<Game {...props} />)
 
-    expect(screen.getByTestId(/mock menu/i)).toBeInTheDocument()
     expect(screen.getByTestId(/mock gallery/i)).toBeInTheDocument()
     expect(screen.getByTestId(/mock gamedetails/i)).toBeInTheDocument()
     expect(screen.getByTestId(/mock gameinfo/i)).toBeInTheDocument()

@@ -6,6 +6,14 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({ asPath: '/profile/me' }))
 }))
 
+jest.mock('templates/Base', () => ({
+  __esModule: true,
+  // eslint-disable-next-line react/prop-types
+  default: function Mock({ children }) {
+    return <div data-testid="Mock Base">{children}</div>
+  }
+}))
+
 jest.mock('components/ProfileMenu', () => ({
   __esModule: true,
   default: function Mock() {

@@ -20,6 +20,14 @@ const props = {
   freeGames: [gamesMock[0]]
 }
 
+jest.mock('templates/Base', () => ({
+  __esModule: true,
+  // eslint-disable-next-line react/prop-types
+  default: function Mock({ children }) {
+    return <div data-testid="Mock Base">{children}</div>
+  }
+}))
+
 jest.mock('components/BannerSlider', () => ({
   __esModule: true,
   default: function Mock() {
