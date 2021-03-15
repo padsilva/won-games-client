@@ -3,7 +3,7 @@ import { useState } from 'react'
 import * as S from './styles'
 
 const TextField = ({
-  onInput,
+  onInputChange,
   label,
   name,
   initialValue = '',
@@ -14,11 +14,12 @@ const TextField = ({
   ...props
 }) => {
   const [value, setValue] = useState(initialValue)
+
   const onChange = (e) => {
     const newValue = e.currentTarget.value
     setValue(newValue)
 
-    !!onInput && onInput(newValue)
+    !!onInputChange && onInputChange(newValue)
   }
 
   return (
@@ -43,7 +44,7 @@ const TextField = ({
 }
 
 TextField.propTypes = {
-  onInput: PropTypes.func,
+  onInputChange: PropTypes.func,
   label: PropTypes.string,
   name: PropTypes.string,
   initialValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
