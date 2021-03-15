@@ -18,7 +18,7 @@ const options = {
           }
         )
 
-        const { data } = await response.json()
+        const data = await response.json()
 
         return data.user ? { ...data.user, jwt: data.jwt } : null
       }

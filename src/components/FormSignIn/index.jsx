@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { signIn } from 'next-auth/client'
 import { Email, Lock } from '@styled-icons/material-outlined'
 
 import Button from 'components/Button'
@@ -7,35 +10,61 @@ import { FormWrapper, FormLink } from 'components/Form'
 
 import * as S from './styles'
 
-const FormSignIn = () => (
-  <FormWrapper>
-    <form>
-      <TextField
-        name="email"
-        placeholder="Email"
-        type="email"
-        icon={<Email />}
-      />
-      <TextField
-        name="password"
-        placeholder="Password"
-        type="password"
-        icon={<Lock />}
-      />
-      <S.ForgotPassword href="#">Forgot your password?</S.ForgotPassword>
+const FormSignIn = () => {
+  const [values, setValues] = useState({})
+  const { push } = useRouter()
 
-      <Button size="large" fullWidth>
-        Sign In
-      </Button>
+  const handleSubmit = async (event) => {
+    event.preventDefault()
 
-      <FormLink>
-        Don&apos;t have an account?{' '}
-        <Link href="/sign-up">
-          <a>Sign Up</a>
-        </Link>
-      </FormLink>
-    </form>
-  </FormWrapper>
-)
+    const result = await signIn('credentials', {
+      ...values,
+      redirect: false,
+      callbackUrl: '/'
+    })
+
+    if (result.url) {
+      return push(result.url)
+    }
+
+    console.error('Invalid email or password!')
+  }
+
+  const handleInput = (field, value) =>
+    setValues((s) => ({ ...s, [field]: value }))
+
+  return (
+    <FormWrapper>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          name="email"
+          placeholder="Email"
+          type="email"
+          onInputChange={(v) => handleInput('email', v)}
+          icon={<Email />}
+        />
+        <TextField
+          name="password"
+          placeholder="Password"
+          type="password"
+          onInputChange={(v) => handleInput('password', v)}
+          icon={<Lock />}
+        />
+        <S.ForgotPassword href="#">Forgot your password?</S.ForgotPassword>
+
+        <Button type="submit" size="large" fullWidth>
+          Sign In
+        </Button>
+
+        <FormLink>
+          Don&apos;t have an account?{' '}
+          <Link href="/sign-up">
+            <a>Sign Up</a>
+          </Link>
+        </FormLink>
+      </form>
+    </FormWrapper>
+  )
+}
 
 export default FormSignIn
