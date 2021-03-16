@@ -2,12 +2,14 @@ import gamesMock from 'components/GameCardSlider/mock'
 import { initializeApollo } from 'utils/apollo'
 import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
 import { gamesMapper, highlightMapper } from 'utils/mappers'
-
 import Wishlist from 'templates/Wishlist'
+import protectedRoutes from 'utils/protectedRoutes'
 
 const WishlistPage = (props) => <Wishlist {...props} />
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (context) => {
+  const session = await protectedRoutes(context)
+
   const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query({
@@ -16,6 +18,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
+      session,
       games: gamesMock,
       recommendedTitle: data.recommended.sections.title,
       recommendedGames: gamesMapper(data.recommended.sections.games),

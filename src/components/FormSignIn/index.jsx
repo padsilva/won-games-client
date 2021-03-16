@@ -16,7 +16,7 @@ const FormSignIn = () => {
   const [fieldError, setFieldError] = useState({})
   const [values, setValues] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
-  const { push } = useRouter()
+  const { push, query } = useRouter()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -36,7 +36,7 @@ const FormSignIn = () => {
     const result = await signIn('credentials', {
       ...values,
       redirect: false,
-      callbackUrl: '/'
+      callbackUrl: `${window.location.origin}${query?.callbackUrl || ''}`
     })
 
     if (result.url) {
