@@ -13,7 +13,7 @@ const FormResetPassword = () => {
   const [fieldError, setFieldError] = useState({})
   const [values, setValues] = useState({ password: '', confirmPassword: '' })
   const [loading, setLoading] = useState(false)
-  const { push, query } = useRouter()
+  const { query } = useRouter()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -30,19 +30,34 @@ const FormResetPassword = () => {
 
     setFieldError({})
 
-    const result = await signIn('credentials', {
-      ...values,
-      redirect: false,
-      callbackUrl: `${window.location.origin}${query?.callbackUrl || ''}`
-    })
+    // send a post to /forgot-password to send an email
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          code: query.code,
+          password: values.password,
+          passwordConfirmation: values.confirmPassword
+        })
+      }
+    )
 
-    if (result.url) {
-      return push(result.url)
+    const data = await response.json()
+
+    if (data.error) {
+      setLoading(false)
+      setFormError(data.message[0].messages[0].message)
+    } else {
+      signIn('credentials', {
+        email: data.user.email,
+        password: values.password,
+        callbackUrl: '/'
+      })
     }
-
-    setLoading(false)
-
-    setFormError('Passwords did not match!')
   }
 
   const handleInput = (field, value) =>
