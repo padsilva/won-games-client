@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import {
   CheckCircleOutline,
   Email,
@@ -16,10 +17,11 @@ import {
 import { forgotValidate } from 'utils/validations'
 
 const FormForgotPassword = () => {
+  const { query } = useRouter()
   const [success, setSuccess] = useState(false)
   const [formError, setFormError] = useState('')
   const [fieldError, setFieldError] = useState({})
-  const [values, setValues] = useState({ email: '' })
+  const [values, setValues] = useState({ email: query.email || '' })
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (event) => {
@@ -86,6 +88,7 @@ const FormForgotPassword = () => {
               error={fieldError?.email}
               onInputChange={(v) => handleInput('email', v)}
               icon={<Email />}
+              initialValue={query.email || ''}
             />
             <Button type="submit" size="large" fullWidth disabled={loading}>
               {loading ? <FormLoading /> : <span>Send Email</span>}
