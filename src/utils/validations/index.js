@@ -34,3 +34,17 @@ export const signInValidate = (values) => {
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }
+
+export const forgotValidate = (values) => {
+  const { email } = fieldsValidation
+  const schema = Joi.object({ email })
+
+  return getFieldErrors(schema.validate(values, { abortEarly: false }))
+}
+
+export const resetValidate = (values) => {
+  const { password, confirmPassword } = fieldsValidation
+  const schema = Joi.object({ password, confirmPassword })
+
+  return getFieldErrors(schema.validate(values, { abortEarly: false }))
+}

@@ -1,20 +1,17 @@
 import { useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/client'
-import { Email, ErrorOutline, Lock } from '@styled-icons/material-outlined'
+import { Email, ErrorOutline } from '@styled-icons/material-outlined'
 
 import Button from 'components/Button'
 import TextField from 'components/TextField'
-import { FormError, FormLink, FormLoading, FormWrapper } from 'components/Form'
-import { signInValidate } from 'utils/validations'
+import { FormError, FormLoading, FormWrapper } from 'components/Form'
+import { forgotValidate } from 'utils/validations'
 
-import * as S from './styles'
-
-const FormSignIn = () => {
+const FormForgotPassword = () => {
   const [formError, setFormError] = useState('')
   const [fieldError, setFieldError] = useState({})
-  const [values, setValues] = useState({ email: '', password: '' })
+  const [values, setValues] = useState({ email: '' })
   const [loading, setLoading] = useState(false)
   const { push, query } = useRouter()
 
@@ -23,7 +20,7 @@ const FormSignIn = () => {
 
     setLoading(true)
 
-    const errors = signInValidate(values)
+    const errors = forgotValidate(values)
 
     if (Object.keys(errors).length) {
       setFieldError(errors)
@@ -45,7 +42,7 @@ const FormSignIn = () => {
 
     setLoading(false)
 
-    setFormError('Invalid email or password!')
+    setFormError('Invalid email!')
   }
 
   const handleInput = (field, value) =>
@@ -68,31 +65,12 @@ const FormSignIn = () => {
           onInputChange={(v) => handleInput('email', v)}
           icon={<Email />}
         />
-        <TextField
-          name="password"
-          placeholder="Password"
-          type="password"
-          error={fieldError?.password}
-          onInputChange={(v) => handleInput('password', v)}
-          icon={<Lock />}
-        />
-        <Link href="/forgot-password" passHref>
-          <S.ForgotPassword>Forgot your password?</S.ForgotPassword>
-        </Link>
-
         <Button type="submit" size="large" fullWidth disabled={loading}>
-          {loading ? <FormLoading /> : <span>Sign In</span>}
+          {loading ? <FormLoading /> : <span>Send Email</span>}
         </Button>
-
-        <FormLink>
-          Don&apos;t have an account?{' '}
-          <Link href="/sign-up">
-            <a>Sign Up</a>
-          </Link>
-        </FormLink>
       </form>
     </FormWrapper>
   )
 }
 
-export default FormSignIn
+export default FormForgotPassword
