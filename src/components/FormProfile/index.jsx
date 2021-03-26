@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types'
+
 import Button from 'components/Button'
 import Heading from 'components/Heading'
 import TextField from 'components/TextField'
 import * as S from './styles'
 
-const FormProfile = () => (
+const FormProfile = ({ username, email }) => (
   <>
     <Heading color="black" lineBottom size="small">
       Profile
@@ -11,10 +13,10 @@ const FormProfile = () => (
 
     <S.Form>
       <TextField
-        name="name"
-        label="Name"
-        placeholder="Name"
-        initialValue="John Doe"
+        name="username"
+        label="Username"
+        placeholder="Username"
+        initialValue={username}
       />
 
       <TextField
@@ -22,7 +24,7 @@ const FormProfile = () => (
         name="email"
         label="Email"
         placeholder="Email"
-        initialValue="johndoe@gmail.com"
+        initialValue={email}
         disabled
       />
 
@@ -44,5 +46,10 @@ const FormProfile = () => (
     </S.Form>
   </>
 )
+
+FormProfile.propTypes = {
+  username: PropTypes.string,
+  email: PropTypes.string
+}
 
 export default FormProfile

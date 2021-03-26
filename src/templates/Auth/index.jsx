@@ -22,7 +22,9 @@ const Auth = ({ title, children }) => (
           </S.Subtitle>
         </div>
 
-        <S.Footer>Won Games 2020 © All rights reserved.</S.Footer>
+        <S.Footer>
+          Won Games {new Date().getFullYear()} © All rights reserved.
+        </S.Footer>
       </S.BannerContent>
     </S.BannerBlock>
 
