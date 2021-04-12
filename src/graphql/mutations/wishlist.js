@@ -16,6 +16,7 @@ export const MUTATION_CREATE_WISHLIST = gql`
       }
     }
   }
+
   ${GameFragment}
 `
 
@@ -34,5 +35,6 @@ export const MUTATION_UPDATE_WISHLIST = gql`
       }
     }
   }
+
   ${GameFragment}
 `
