@@ -29,7 +29,7 @@ export const wishlistMock = {
     data: {
       wishlists: [
         {
-          id: '1',
+          id: 1,
           games: [gameMock('1'), gameMock('2')]
         }
       ]

@@ -1,9 +1,15 @@
 import 'session.mock'
 import { MockedProvider } from '@apollo/client/testing'
 import { renderHook } from '@testing-library/react-hooks'
-import { act } from 'utils/test-utils'
+import { act, waitFor } from 'utils/test-utils'
 import { useWishlist, WishlistProvider } from '.'
-import { createWishlistMock, wishlistItems, wishlistMock } from './mock'
+import {
+  createWishlistMock,
+  removeWishlistMock,
+  updateWishlistMock,
+  wishlistItems,
+  wishlistMock
+} from './mock'
 
 describe('useWishlist', () => {
   it('should return wishlist items', async () => {
@@ -67,49 +73,49 @@ describe('useWishlist', () => {
     expect(result.current.items).toStrictEqual([wishlistItems[2]])
   })
 
-  // it('should add item in wishlist and updating the current list', async () => {
-  //   const wrapper = ({ children }) => (
-  //     <MockedProvider mocks={[wishlistMock, updateWishlistMock]}>
-  //       <WishlistProvider>{children}</WishlistProvider>
-  //     </MockedProvider>
-  //   )
+  it('should add item in wishlist and updating the current list', async () => {
+    const wrapper = ({ children }) => (
+      <MockedProvider mocks={[wishlistMock, updateWishlistMock]}>
+        <WishlistProvider>{children}</WishlistProvider>
+      </MockedProvider>
+    )
 
-  //   const { result, waitForNextUpdate } = renderHook(() => useWishlist(), {
-  //     wrapper
-  //   })
+    const { result, waitForNextUpdate } = renderHook(() => useWishlist(), {
+      wrapper
+    })
 
-  //   // wait for the data to load
-  //   await waitForNextUpdate()
+    // wait for the data to load
+    await waitForNextUpdate()
 
-  //   act(() => {
-  //     result.current.addToWishlist('3')
-  //   })
+    act(() => {
+      result.current.addToWishlist('3')
+    })
 
-  //   await waitFor(() => {
-  //     expect(result.current.items).toStrictEqual(wishlistItems)
-  //   })
-  // })
+    await waitFor(() => {
+      expect(result.current.items).toStrictEqual(wishlistItems)
+    })
+  })
 
-  // it('should remove item from wishlist', async () => {
-  //   const wrapper = ({ children }) => (
-  //     <MockedProvider mocks={[wishlistMock, removeWishlistMock]}>
-  //       <WishlistProvider>{children}</WishlistProvider>
-  //     </MockedProvider>
-  //   )
+  it('should remove item from wishlist', async () => {
+    const wrapper = ({ children }) => (
+      <MockedProvider mocks={[wishlistMock, removeWishlistMock]}>
+        <WishlistProvider>{children}</WishlistProvider>
+      </MockedProvider>
+    )
 
-  //   const { result, waitForNextUpdate } = renderHook(() => useWishlist(), {
-  //     wrapper
-  //   })
+    const { result, waitForNextUpdate } = renderHook(() => useWishlist(), {
+      wrapper
+    })
 
-  //   // wait for the data to load
-  //   await waitForNextUpdate()
+    // wait for the data to load
+    await waitForNextUpdate()
 
-  //   act(() => {
-  //     result.current.removeFromWishlist('1')
-  //   })
+    act(() => {
+      result.current.removeFromWishlist('1')
+    })
 
-  //   await waitFor(() => {
-  //     expect(result.current.items).toStrictEqual([wishlistItems[1]])
-  //   })
-  // })
+    await waitFor(() => {
+      expect(result.current.items).toStrictEqual([wishlistItems[1]])
+    })
+  })
 })
