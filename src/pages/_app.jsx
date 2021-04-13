@@ -9,7 +9,7 @@ import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
 import { useApollo } from 'utils/apollo'
 import { CartProvider } from 'hooks/use-cart'
-import { WishlistProvider } from 'hooks/user-wishlist'
+import { WishlistProvider } from 'hooks/use-wishlist'
 
 const App = ({ Component, pageProps }) => {
   const client = useApollo(pageProps.initialApolloState)

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import Link from 'next/link'
-import { Favorite, FavoriteBorder } from '@styled-icons/material-outlined'
 
 import Ribbon from 'components/Ribbon'
 import CartButton from 'components/CartButton'
+import WishlistButton from 'components/WishlistButton'
 import { formatPrice } from 'utils/formatPrice'
 
 import * as S from './styles'
@@ -16,8 +16,6 @@ const GameCard = ({
   img,
   price,
   promotionalPrice,
-  favorite = false,
-  onFav,
   ribbon,
   ribbonColor,
   ribbonSize
@@ -43,12 +41,8 @@ const GameCard = ({
         </S.Info>
       </Link>
 
-      <S.FavButton onClick={onFav} role="button">
-        {favorite ? (
-          <Favorite aria-label="Remove from Wishlist" />
-        ) : (
-          <FavoriteBorder aria-label="Add to Wishlist" />
-        )}
+      <S.FavButton>
+        <WishlistButton id={id} />
       </S.FavButton>
 
       <S.BuyBox>
@@ -70,8 +64,6 @@ GameCard.propTypes = {
   img: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   promotionalPrice: PropTypes.number,
-  favorite: PropTypes.bool,
-  onFav: PropTypes.func,
   ribbon: PropTypes.node,
   ribbonColor: PropTypes.oneOf(['primary', 'secondary']),
   ribbonSize: PropTypes.oneOf(['normal', 'small'])

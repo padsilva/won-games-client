@@ -79,7 +79,7 @@ export const WishlistProvider = ({ children }) => {
           }
         })
 
-  const removeFromWishlist = (id) => {
+  const removeFromWishlist = (id) =>
     updateList({
       variables: {
         input: {
@@ -88,7 +88,6 @@ export const WishlistProvider = ({ children }) => {
         }
       }
     })
-  }
 
   return (
     <WishlistContext.Provider

@@ -6,7 +6,7 @@ import theme from 'styles/theme'
 import {
   WishlistContext,
   WishlistContextDefaultValues
-} from '../hooks/user-wishlist'
+} from '../hooks/use-wishlist'
 
 const customRender = (
   ui,

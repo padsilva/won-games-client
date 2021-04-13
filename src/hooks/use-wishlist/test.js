@@ -1,12 +1,9 @@
+import 'session.mock'
 import { MockedProvider } from '@apollo/client/testing'
 import { renderHook } from '@testing-library/react-hooks'
 import { act } from 'utils/test-utils'
 import { useWishlist, WishlistProvider } from '.'
 import { createWishlistMock, wishlistItems, wishlistMock } from './mock'
-
-const useSession = jest.spyOn(require('next-auth/client'), 'useSession')
-const session = { jwt: '123', user: { email: 'lorem@ipsum.com' } }
-useSession.mockImplementation(() => [session])
 
 describe('useWishlist', () => {
   it('should return wishlist items', async () => {
