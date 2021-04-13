@@ -8,46 +8,56 @@ import GameCard from 'components/GameCard'
 import { Divider } from 'components/Divider'
 import Empty from 'components/Empty'
 import Showcase from 'components/Showcase'
+import Loader from 'components/Loader'
+import { useWishlist } from 'hooks/use-wishlist'
+
+import * as S from './styles'
 
 const Wishlist = ({
-  games,
   recommendedTitle,
   recommendedGames,
   recommendedHighlight
-}) => (
-  <Base>
-    <Container>
-      <Heading lineLeft lineColor="secondary">
-        Wishlist
-      </Heading>
+}) => {
+  const { items, loading } = useWishlist()
 
-      {games?.length > 0 ? (
-        <Grid>
-          {games.map((game, index) => (
-            <GameCard {...game} favorite key={`wishlist-${index}`} />
-          ))}
-        </Grid>
-      ) : (
-        <Empty
-          title="Your wishlist is empty"
-          description="Games added to your wishlist will appear here"
-          hasLink
-        />
-      )}
+  return (
+    <Base>
+      <Container>
+        <Heading lineLeft lineColor="secondary">
+          Wishlist
+        </Heading>
 
-      <Divider />
-    </Container>
+        {loading ? (
+          <S.Loading>
+            <Loader />
+          </S.Loading>
+        ) : items.length > 0 ? (
+          <Grid>
+            {items.map((game, index) => (
+              <GameCard {...game} favorite key={`wishlist-${index}`} />
+            ))}
+          </Grid>
+        ) : (
+          <Empty
+            title="Your wishlist is empty"
+            description="Games added to your wishlist will appear here"
+            hasLink
+          />
+        )}
 
-    <Showcase
-      title={recommendedTitle}
-      games={recommendedGames}
-      highlight={recommendedHighlight}
-    />
-  </Base>
-)
+        <Divider />
+      </Container>
+
+      <Showcase
+        title={recommendedTitle}
+        games={recommendedGames}
+        highlight={recommendedHighlight}
+      />
+    </Base>
+  )
+}
 
 Wishlist.propTypes = {
-  games: PropTypes.array,
   recommendedTitle: PropTypes.string.isRequired,
   recommendedGames: PropTypes.array.isRequired,
   recommendedHighlight: PropTypes.object.isRequired

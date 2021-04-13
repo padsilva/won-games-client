@@ -10,9 +10,9 @@ import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/
 import ExploreSidebar from 'components/ExploreSidebar'
 import GameCard from 'components/GameCard'
 import { Grid } from 'components/Grid'
+import Empty from 'components/Empty'
 
 import * as S from './styles'
-import Empty from 'components/Empty'
 
 const GamesTemplate = ({ filterItems }) => {
   const { push, query } = useRouter()

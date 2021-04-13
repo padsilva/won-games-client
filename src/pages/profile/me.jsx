@@ -16,11 +16,14 @@ export const getServerSideProps = async (context) => {
 
   // get game data
   const { data } = await apolloClient.query({
-    query: QUERY_PROFILE_ME
+    query: QUERY_PROFILE_ME,
+    variables: {
+      identifier: session?.id
+    }
   })
 
   return {
-    props: { session, username: data.me?.username, email: data.me?.email }
+    props: { session, username: data.user?.username, email: data.me?.email }
   }
 }
 
