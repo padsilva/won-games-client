@@ -18,6 +18,7 @@ export const gamesMock = {
           cover: {
             url: '/sample-game.jpg'
           },
+          release_date: '1970-01-01',
           __typename: 'Game'
         },
         {
@@ -30,6 +31,7 @@ export const gamesMock = {
           cover: {
             url: '/sample-game.jpg'
           },
+          release_date: '1970-01-01',
           __typename: 'Game'
         }
       ],

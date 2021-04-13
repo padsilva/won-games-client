@@ -3,15 +3,25 @@ import { ThemeProvider } from 'styled-components'
 
 import { CartContext, CartContextDefaultValues } from 'hooks/use-cart'
 import theme from 'styles/theme'
+import {
+  WishlistContext,
+  WishlistContextDefaultValues
+} from '../hooks/user-wishlist'
 
 const customRender = (
   ui,
-  { cartProviderProps = CartContextDefaultValues, ...renderOptions } = {}
+  {
+    cartProviderProps = CartContextDefaultValues,
+    wishlistProviderProps = WishlistContextDefaultValues,
+    ...renderOptions
+  } = {}
 ) =>
   render(
     <ThemeProvider theme={theme}>
       <CartContext.Provider value={cartProviderProps}>
-        {ui}
+        <WishlistContext.Provider value={wishlistProviderProps}>
+          {ui}
+        </WishlistContext.Provider>
       </CartContext.Provider>
     </ThemeProvider>,
     renderOptions
