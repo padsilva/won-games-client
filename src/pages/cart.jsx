@@ -6,11 +6,13 @@ import cardsMock from 'components/PaymentOptions/mock'
 import { initializeApollo } from 'utils/apollo'
 import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
 import { gamesMapper, highlightMapper } from 'utils/mappers'
+import protectedRoutes from 'utils/protectedRoutes'
 
 const CartPage = (props) => <Cart {...props} />
 
-export const getServerSideProps = async () => {
-  const apolloClient = initializeApollo()
+export const getServerSideProps = async (context) => {
+  const session = await protectedRoutes(context)
+  const apolloClient = initializeApollo(null, session)
 
   const { data } = await apolloClient.query({
     query: QUERY_RECOMMENDED
@@ -18,6 +20,7 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
+      session,
       items: itemsMock,
       total: '119,98€',
       cards: cardsMock,
