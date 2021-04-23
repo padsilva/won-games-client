@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types'
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 
 import Base from 'templates/Base'
 import { Container } from 'components/Container'
@@ -10,6 +12,8 @@ import Showcase from 'components/Showcase'
 
 import * as S from './styles'
 
+const stripe = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`)
+
 const Cart = ({ recommendedTitle, recommendedGames, recommendedHighlight }) => (
   <Base>
     <Container>
@@ -19,8 +23,9 @@ const Cart = ({ recommendedTitle, recommendedGames, recommendedHighlight }) => (
 
       <S.Content>
         <CartList />
-
-        <PaymentForm />
+        <Elements stripe={stripe}>
+          <PaymentForm />
+        </Elements>
       </S.Content>
 
       <Divider />
