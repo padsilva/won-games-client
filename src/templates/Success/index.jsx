@@ -1,45 +1,55 @@
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 import Link from 'next/link'
+import { Done } from '@styled-icons/material-outlined'
 
 import Base from 'templates/Base'
 import { Container } from 'components/Container'
 import Showcase from 'components/Showcase'
 
 import * as S from './styles'
-import { Done } from '@styled-icons/material-outlined'
+import { useCart } from 'hooks/use-cart'
 
 const Success = ({
   recommendedTitle,
   recommendedGames,
   recommendedHighlight
-}) => (
-  <Base>
-    <Container>
-      <S.Wrapper>
-        <S.Heading>Your purchase was successful!</S.Heading>
+}) => {
+  const { clearCart } = useCart()
 
-        <S.CheckMark>
-          <Done />
-        </S.CheckMark>
+  useEffect(() => {
+    clearCart()
+  }, [clearCart])
 
-        <S.Text>
-          Wait for your payment details by email. Your game is now available for
-          download inside your{' '}
-          <Link>
-            <a>Orders List</a>
-          </Link>
-          . Enjoy!
-        </S.Text>
-      </S.Wrapper>
-    </Container>
+  return (
+    <Base>
+      <Container>
+        <S.Wrapper>
+          <S.Heading>Your purchase was successful!</S.Heading>
 
-    <Showcase
-      title={recommendedTitle}
-      games={recommendedGames}
-      highlight={recommendedHighlight}
-    />
-  </Base>
-)
+          <S.CheckMark>
+            <Done />
+          </S.CheckMark>
+
+          <S.Text>
+            Wait for your payment details by email. Your game is now available
+            for download inside your{' '}
+            <Link href="/profile/orders">
+              <a>Orders List</a>
+            </Link>
+            . Enjoy!
+          </S.Text>
+        </S.Wrapper>
+      </Container>
+
+      <Showcase
+        title={recommendedTitle}
+        games={recommendedGames}
+        highlight={recommendedHighlight}
+      />
+    </Base>
+  )
+}
 
 Success.propTypes = {
   recommendedTitle: PropTypes.string.isRequired,

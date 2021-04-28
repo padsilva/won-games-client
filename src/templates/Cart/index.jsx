@@ -14,7 +14,12 @@ import * as S from './styles'
 
 const stripe = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`)
 
-const Cart = ({ recommendedTitle, recommendedGames, recommendedHighlight }) => (
+const Cart = ({
+  session,
+  recommendedTitle,
+  recommendedGames,
+  recommendedHighlight
+}) => (
   <Base>
     <Container>
       <Heading lineLeft lineColor="secondary">
@@ -24,7 +29,7 @@ const Cart = ({ recommendedTitle, recommendedGames, recommendedHighlight }) => (
       <S.Content>
         <CartList />
         <Elements stripe={stripe}>
-          <PaymentForm />
+          <PaymentForm session={session} />
         </Elements>
       </S.Content>
 
@@ -40,6 +45,7 @@ const Cart = ({ recommendedTitle, recommendedGames, recommendedHighlight }) => (
 )
 
 Cart.propTypes = {
+  session: PropTypes.object.isRequired,
   recommendedTitle: PropTypes.string.isRequired,
   recommendedGames: PropTypes.array.isRequired,
   recommendedHighlight: PropTypes.object.isRequired

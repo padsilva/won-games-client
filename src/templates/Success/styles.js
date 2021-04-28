@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    padding: ${theme.spacings.xxlarge} 0 calc(${theme.spacings.xxlarge * 3});
+    padding: ${theme.spacings.xxlarge} 0 calc(${theme.spacings.xxlarge} * 3);
   `}
 `
 
@@ -36,5 +36,10 @@ export const Text = styled.p`
     text-align: center;
     max-width: 60rem;
     margin: auto;
+
+    a {
+      color: ${theme.colors.primary};
+      text-decoration: none;
+    }
   `}
 `
