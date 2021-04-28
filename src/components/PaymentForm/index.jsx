@@ -10,10 +10,10 @@ import { FormLoading } from 'components/Form'
 
 import * as S from './styles'
 import { useCart } from 'hooks/use-cart'
-import { createPaymentIntent } from 'utils/stripe/methods'
+import { createPayment, createPaymentIntent } from 'utils/stripe/methods'
 
 const PaymentForm = ({ session }) => {
-  const { items } = useCart()
+  const { items, clearCart } = useCart()
   const { push } = useRouter()
   const stripe = useStripe()
   const elements = useElements()
@@ -50,12 +50,23 @@ const PaymentForm = ({ session }) => {
     setError(event.error ? event.error.message : '')
   }
 
+  const saveOrder = async (paymentIntent) => {
+    const data = await createPayment({
+      items,
+      paymentIntent,
+      token: session.jwt
+    })
+
+    return data
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     setLoading(true)
 
     if (freeGames) {
+      saveOrder()
       push('/success')
     } else {
       const payload = await stripe.confirmCardPayment(clientSecret, {
@@ -70,6 +81,8 @@ const PaymentForm = ({ session }) => {
       } else {
         setError(null)
         setLoading(false)
+        saveOrder(payload.paymentIntent)
+        clearCart()
         push('/success')
       }
     }
