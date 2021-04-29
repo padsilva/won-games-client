@@ -13,7 +13,11 @@ const OrdersList = ({ items = [] }) => (
     </Heading>
 
     {items.length > 0 ? (
-      items.map((item) => <GameItem key={item.downloadLink} {...item} />)
+      items.map((order) =>
+        order.games.map((game) => (
+          <GameItem key={order.id} {...game} paymentInfo={order.paymentInfo} />
+        ))
+      )
     ) : (
       <Empty
         title="You have no orders yet."
@@ -27,16 +31,22 @@ const OrdersList = ({ items = [] }) => (
 OrdersList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      img: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      downloadLink: PropTypes.string,
+      id: PropTypes.string.isRequired,
       paymentInfo: PropTypes.shape({
-        flag: PropTypes.string.isRequired,
-        img: PropTypes.string.isRequired,
+        flag: PropTypes.string,
+        img: PropTypes.string,
         number: PropTypes.string.isRequired,
         purchaseDate: PropTypes.string.isRequired
-      })
+      }),
+      games: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          title: PropTypes.string.isRequired,
+          downloadLink: PropTypes.string,
+          img: PropTypes.string.isRequired,
+          price: PropTypes.string.isRequired
+        })
+      )
     })
   )
 }

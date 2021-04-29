@@ -41,7 +41,9 @@ const GameItem = ({ id, img, title, price, downloadLink, paymentInfo }) => {
           <div>{paymentInfo.purchaseDate}</div>
           <S.CardInfo>
             <span>{paymentInfo.number}</span>
-            <img src={paymentInfo.img} alt={paymentInfo.flag} />
+            {!!paymentInfo.img && !!paymentInfo.flag && (
+              <img src={paymentInfo.img} alt={paymentInfo.flag} />
+            )}
           </S.CardInfo>
         </S.PaymentContent>
       )}
@@ -56,8 +58,8 @@ GameItem.propTypes = {
   price: PropTypes.string.isRequired,
   downloadLink: PropTypes.string,
   paymentInfo: PropTypes.shape({
-    flag: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
+    flag: PropTypes.string,
+    img: PropTypes.string,
     number: PropTypes.string.isRequired,
     purchaseDate: PropTypes.string.isRequired
   })
