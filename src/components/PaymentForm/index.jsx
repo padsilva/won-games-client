@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { ErrorOutline, ShoppingCart } from '@styled-icons/material-outlined'
 
@@ -117,9 +118,11 @@ const PaymentForm = ({ session }) => {
         </S.Body>
 
         <S.Footer>
-          <Button as="a" fullWidth minimal>
-            Continue shopping
-          </Button>
+          <Link href="/" passHref>
+            <Button as="a" fullWidth minimal>
+              Continue shopping
+            </Button>
+          </Link>
           <Button
             fullWidth
             icon={loading ? <FormLoading /> : <ShoppingCart />}
