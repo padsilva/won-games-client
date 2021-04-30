@@ -1,4 +1,4 @@
-import 'match-media-mock'
+import 'match-media.mock'
 import { render, screen } from 'utils/test-utils'
 import bannersMock from 'components/BannerSlider/mock'
 import gamesMock from 'components/GameCardSlider/mock'

@@ -10,7 +10,7 @@ describe('<Auth />', () => {
     )
 
     // check if got the 2 logos
-    expect(screen.getAllByRole('img', { name: /won games/i })).toHaveLength(2)
+    expect(screen.getAllByRole('img', { name: 'Won Games' })).toHaveLength(2)
 
     // check if got the heading
     expect(

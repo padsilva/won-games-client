@@ -15,7 +15,7 @@ const OrdersList = ({ items = [] }) => (
     {items.length > 0 ? (
       items.map((order) =>
         order.games.map((game) => (
-          <GameItem key={order.id} {...game} paymentInfo={order.paymentInfo} />
+          <GameItem key={game.id} {...game} paymentInfo={order.paymentInfo} />
         ))
       )
     ) : (
