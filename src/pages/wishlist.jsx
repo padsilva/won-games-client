@@ -11,7 +11,9 @@ export const getServerSideProps = async (context) => {
   const session = await protectedRoutes(context)
   const apolloClient = initializeApollo(null, session)
 
-  if (!session) return {}
+  if (!session) {
+    return { props: {} }
+  }
 
   await apolloClient.query({
     query: QUERY_WISHLIST,
@@ -28,9 +30,11 @@ export const getServerSideProps = async (context) => {
     props: {
       session,
       initialApolloState: apolloClient.cache.extract(),
-      recommendedTitle: data.recommended.sections.title,
-      recommendedGames: gamesMapper(data.recommended.sections.games),
-      recommendedHighlight: highlightMapper(data.recommended.sections.highlight)
+      recommendedTitle: data.recommended?.sections?.title,
+      recommendedGames: gamesMapper(data.recommended?.sections?.games),
+      recommendedHighlight: highlightMapper(
+        data.recommended?.sections?.highlight
+      )
     }
   }
 }
