@@ -7,7 +7,7 @@ export default {
     title: 'Won Games'
   },
   twitter: {
-    handle: '@Willian_justen',
+    handle: '@padsilva88',
     site: '@site',
     cardType: 'summary_large_image'
   }

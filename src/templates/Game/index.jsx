@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 
 import Base from 'templates/Base'
@@ -12,6 +13,7 @@ import * as S from './styles'
 import { Divider } from 'components/Divider'
 
 const Game = ({
+  slug,
   cover,
   gameInfo,
   gallery,
@@ -24,6 +26,23 @@ const Game = ({
   recommendedGames
 }) => (
   <Base>
+    <NextSeo
+      title={`${gameInfo.title} - Won Games`}
+      description={gameInfo.description}
+      canonical={`https://padsilva-wongames.vercel.app/game/${slug}`}
+      openGraph={{
+        url: `https://padsilva-wongames.vercel.app/game/${slug}`,
+        title: `${gameInfo.title} - Won Games`,
+        description: gameInfo.description,
+        images: [
+          {
+            url: cover,
+            alt: `${gameInfo.title}`
+          }
+        ]
+      }}
+    />
+
     <S.Cover>
       <Image src={cover} alt={gameInfo.title} layout="fill" />
     </S.Cover>
@@ -58,6 +77,7 @@ const Game = ({
 )
 
 Game.propTypes = {
+  slug: PropTypes.string,
   cover: PropTypes.string.isRequired,
   gameInfo: PropTypes.object.isRequired,
   gallery: PropTypes.array,
