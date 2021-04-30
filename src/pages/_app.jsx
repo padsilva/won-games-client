@@ -4,6 +4,8 @@ import { Provider as AuthProvider } from 'next-auth/client'
 import NextNprogress from 'nextjs-progressbar'
 import { ThemeProvider } from 'styled-components'
 import { ApolloProvider } from '@apollo/client'
+import { DefaultSeo } from 'next-seo'
+import SEO from '../../next-seo.config'
 
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
@@ -30,6 +32,7 @@ const App = ({ Component, pageProps }) => {
                   content="The best game store in the world!"
                 />
               </Head>
+              <DefaultSeo {...SEO} />
               <GlobalStyles />
               <NextNprogress
                 color={theme.colors.primary}
