@@ -1,6 +1,11 @@
 import { fireEvent, render, screen } from 'utils/test-utils'
 import Menu from '.'
 
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+useRouter.mockImplementation(() => ({
+  query: {}
+}))
+
 describe('<Menu />', () => {
   it('should render the menu', () => {
     render(<Menu />)

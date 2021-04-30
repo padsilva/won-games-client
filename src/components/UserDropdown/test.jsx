@@ -3,6 +3,11 @@ import userEvent from '@testing-library/user-event'
 import { render, screen } from 'utils/test-utils'
 import UserDropdown from '.'
 
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+useRouter.mockImplementation(() => ({
+  query: {}
+}))
+
 describe('<UserDropdown />', () => {
   it('should render the username', () => {
     render(<UserDropdown username="Paulo" />)
