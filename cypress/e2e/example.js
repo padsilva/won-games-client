@@ -1,1 +1,1 @@
-describe('Cypress JS', () => it('should go to google', () => cy.google()))
+describe.skip('Cypress JS', () => it('should go to google', () => cy.google()))
