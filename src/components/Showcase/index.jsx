@@ -7,7 +7,7 @@ import Highlight from 'components/Highlight'
 import * as S from './styles'
 
 const Showcase = ({ title, highlight, games, color = 'white' }) => (
-  <S.Wrapper>
+  <S.Wrapper data-cy={title || 'showcase'}>
     {!!title && (
       <Heading lineLeft lineColor="secondary">
         {title}

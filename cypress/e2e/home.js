@@ -4,4 +4,12 @@ describe('Home Page', () =>
     cy.visit('/')
 
     cy.shouldRenderBanner()
+
+    cy.shouldRenderShowcase({ name: 'New' })
+
+    cy.shouldRenderShowcase({ name: 'Most Popular', highlight: true })
+
+    cy.shouldRenderShowcase({ name: 'Upcoming', highlight: true })
+
+    cy.shouldRenderShowcase({ name: 'Free', highlight: true })
   }))
