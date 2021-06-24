@@ -17,7 +17,7 @@ const CartList = ({ hasButton = false }) => {
       <Loader />
     </S.Loading>
   ) : (
-    <S.Wrapper isEmpty={!items.length}>
+    <S.Wrapper isEmpty={!items.length} data-cy="cart-list">
       {items.length ? (
         <>
           <S.GamesList>

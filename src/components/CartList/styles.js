@@ -4,7 +4,7 @@ import media from 'styled-media-query'
 
 import * as EmptyStyles from 'components/Empty/styles'
 
-export const Wrapper = styled.main`
+export const Wrapper = styled.div`
   ${({ theme, isEmpty }) => css`
     background: ${theme.colors.white};
     display: flex;

@@ -4,7 +4,7 @@ import Heading from 'components/Heading'
 import * as S from './styles'
 
 const TextContent = ({ title, content }) => (
-  <S.Wrapper>
+  <S.Wrapper data-cy="content">
     {!!title && (
       <Heading lineLeft lineColor="secondary">
         {title}

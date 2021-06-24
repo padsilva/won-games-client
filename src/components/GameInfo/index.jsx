@@ -9,7 +9,7 @@ import { formatPrice } from 'utils/formatPrice'
 import * as S from './styles'
 
 const GameInfo = ({ id, title, description, price }) => (
-  <S.Wrapper>
+  <S.Wrapper data-cy="game-info">
     <Heading color="black" lineBottom>
       {title}
     </Heading>
