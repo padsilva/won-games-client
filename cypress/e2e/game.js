@@ -52,7 +52,7 @@ describe('Home Page', () => {
 
     cy.findAllByLabelText(/cart items/i)
       .first()
-      .should('have.text', '1')
+      .contains('1')
       .click()
 
     cy.getByDataCy('cart-list').within(() => {
