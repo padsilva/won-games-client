@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const Username = styled.div`
+export const Username = styled.span`
   ${({ theme }) => css`
     padding: 0 ${theme.spacings.xxsmall};
   `}

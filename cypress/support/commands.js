@@ -86,3 +86,20 @@ Cypress.Commands.add('shouldBeGreaterThan', (value) => {
     .then(parseFloat)
     .should('be.gt', value)
 })
+
+Cypress.Commands.add('signUp', (user) => {
+  cy.findByPlaceholderText(/username/i).type(user.username)
+  cy.findByPlaceholderText(/email/i).type(user.email)
+  cy.findByPlaceholderText(/^password/i).type(user.password)
+  cy.findByPlaceholderText(/confirm password/i).type(user.password)
+  cy.findByRole('button', { name: /sign up/i }).click()
+})
+
+Cypress.Commands.add(
+  'signIn',
+  (email = 'e2e@wongames.com', password = '123456') => {
+    cy.findByPlaceholderText(/email/i).type(email)
+    cy.findByPlaceholderText(/password/i).type(password)
+    cy.findByRole('button', { name: /sign in/i }).click()
+  }
+)
