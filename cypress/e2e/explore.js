@@ -27,13 +27,13 @@ describe('Explore Page', () => {
   })
 
   it('should order by price', () => {
-    cy.findByText(/lowest to high/i).click()
+    cy.findByText(/lowest to highest/i).click()
     cy.location('href').should('contain', 'sort=price%3Aasc')
     cy.getByDataCy('game-card')
       .first()
       .within(() => cy.findByText('€0.00').should('exist'))
 
-    cy.findByText(/highest to low/i).click()
+    cy.findByText(/highest to lowest/i).click()
     cy.location('href').should('contain', 'sort=price%3Adesc')
     cy.getByDataCy('game-card')
       .first()
