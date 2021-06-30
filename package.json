@@ -13,7 +13,8 @@
     "build-storybook": "build-storybook",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test:e2e": "start-server-and-test dev 3000 cy:open"
+    "test:e2e": "start-server-and-test dev 3000 cy:open",
+    "test:e2e:ci": "start-server-and-test start 3000 cy:run"
   },
   "husky": {
     "hooks": {
