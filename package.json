@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint src --ext .jsx,.js",
     "test": "jest",
+    "test:ci": "jest --runInBand",
     "generate": "yarn plop --plopfile ./generators/plopfile.js",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook",

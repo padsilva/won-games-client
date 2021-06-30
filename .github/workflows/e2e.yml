@@ -1,5 +1,5 @@
 name: End to End
-on: [pull_request]
+on: [push]
 
 jobs:
   end-to-end:
