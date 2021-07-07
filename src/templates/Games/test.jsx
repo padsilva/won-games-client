@@ -26,7 +26,12 @@ jest.mock('templates/Base', () => ({
   }
 }))
 
-jest.mock('next/link', () => ({ children }) => children)
+jest.mock(
+  'next/link',
+  () =>
+    ({ children }) =>
+      children
+)
 
 describe('<Games />', () => {
   it('should render sections', async () => {

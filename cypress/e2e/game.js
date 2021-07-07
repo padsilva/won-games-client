@@ -1,8 +1,6 @@
-/* eslint-disable cypress/no-unnecessary-waiting */
 describe('Home Page', () => {
   before(() => {
     cy.visit('/game/cyberpunk_2077')
-    cy.wait(6000)
   })
 
   it('should render game page section', () => {

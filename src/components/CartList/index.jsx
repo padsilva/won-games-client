@@ -30,7 +30,7 @@ const CartList = ({ hasButton = false }) => {
             {!hasButton && <span>Total:</span>}
             <S.Total>{total}</S.Total>
             {hasButton && (
-              <Link href="/cart">
+              <Link href="/cart" passHref>
                 <Button as="a">Buy now</Button>
               </Link>
             )}

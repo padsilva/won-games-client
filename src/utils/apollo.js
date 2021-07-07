@@ -39,9 +39,9 @@ export const initializeApollo = (initialState = null, session = null) => {
 }
 
 export const useApollo = (initialState = null, session = null) => {
-  const store = useMemo(() => initializeApollo(initialState, session), [
-    initialState,
-    session
-  ])
+  const store = useMemo(
+    () => initializeApollo(initialState, session),
+    [initialState, session]
+  )
   return store
 }

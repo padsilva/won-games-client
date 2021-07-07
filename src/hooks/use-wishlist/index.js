@@ -59,9 +59,10 @@ export const WishlistProvider = ({ children }) => {
     setWishlistId(data?.wishlists[0]?.id)
   }, [data])
 
-  const wishlistIds = useMemo(() => wishlistItems.map((game) => game.id), [
-    wishlistItems
-  ])
+  const wishlistIds = useMemo(
+    () => wishlistItems.map((game) => game.id),
+    [wishlistItems]
+  )
 
   const isInWishlist = (id) => !!wishlistItems.find((game) => game.id === id)
 

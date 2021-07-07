@@ -1,4 +1,3 @@
-/* eslint-disable cypress/no-unnecessary-waiting */
 import { createUser } from '../support/generate'
 
 describe('Checkout', () => {
@@ -33,8 +32,6 @@ describe('Checkout', () => {
       cy.findByText(/only free games/i).should('exist')
 
       cy.findByRole('button', { name: /buy now/i }).click()
-
-      cy.wait(6000)
 
       cy.url().should('eq', `${Cypress.config().baseUrl}/success`)
 
@@ -97,8 +94,6 @@ describe('Checkout', () => {
       cy.fillElementsInput('cardCvc', '103')
 
       cy.findByRole('button', { name: /buy now/i }).click()
-
-      cy.wait(6000)
 
       cy.url().should('eq', `${Cypress.config().baseUrl}/success`)
 

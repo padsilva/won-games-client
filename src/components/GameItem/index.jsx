@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { Download } from '@styled-icons/boxicons-solid'
 
@@ -12,7 +13,7 @@ const GameItem = ({ id, img, title, price, downloadLink, paymentInfo }) => {
     <S.Wrapper data-cy="game-item">
       <S.GameContent>
         <S.ImageBox>
-          <img src={img} alt={title} />
+          <Image src={img} alt={title} width={150} height={70} />
         </S.ImageBox>
 
         <S.Content>
@@ -42,7 +43,12 @@ const GameItem = ({ id, img, title, price, downloadLink, paymentInfo }) => {
           <S.CardInfo>
             <span>{paymentInfo.number}</span>
             {!!paymentInfo.img && !!paymentInfo.flag && (
-              <img src={paymentInfo.img} alt={paymentInfo.flag} />
+              <Image
+                src={paymentInfo.img}
+                alt={paymentInfo.flag}
+                width={38}
+                height={24}
+              />
             )}
           </S.CardInfo>
         </S.PaymentContent>
