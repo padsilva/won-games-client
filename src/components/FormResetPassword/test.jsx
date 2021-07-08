@@ -31,12 +31,9 @@ describe('<FormResetPassword />', () => {
   it('should validate if the passwords match', async () => {
     render(<FormResetPassword />)
 
-    await userEvent.type(screen.getByPlaceholderText('Password'), '12345')
+    userEvent.type(screen.getByPlaceholderText('Password'), '12345')
 
-    await userEvent.type(
-      screen.getByPlaceholderText(/confirm password/i),
-      '54321'
-    )
+    userEvent.type(screen.getByPlaceholderText(/confirm password/i), '54321')
 
     userEvent.click(screen.getByRole('button', { name: /reset password/i }))
 
@@ -49,12 +46,9 @@ describe('<FormResetPassword />', () => {
     query = { code: 'wrong_code' }
     render(<FormResetPassword />)
 
-    await userEvent.type(screen.getByPlaceholderText('Password'), '12345')
+    userEvent.type(screen.getByPlaceholderText('Password'), '12345')
 
-    await userEvent.type(
-      screen.getByPlaceholderText(/confirm password/i),
-      '12345'
-    )
+    userEvent.type(screen.getByPlaceholderText(/confirm password/i), '12345')
 
     userEvent.click(screen.getByRole('button', { name: /reset password/i }))
 
@@ -68,12 +62,9 @@ describe('<FormResetPassword />', () => {
 
     render(<FormResetPassword />)
 
-    await userEvent.type(screen.getByPlaceholderText('Password'), '12345')
+    userEvent.type(screen.getByPlaceholderText('Password'), '12345')
 
-    await userEvent.type(
-      screen.getByPlaceholderText(/confirm password/i),
-      '12345'
-    )
+    userEvent.type(screen.getByPlaceholderText(/confirm password/i), '12345')
 
     userEvent.click(screen.getByRole('button', { name: /reset password/i }))
 

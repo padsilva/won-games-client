@@ -51,7 +51,7 @@ describe('<Checkbox />', () => {
     expect(onCheck).toHaveBeenCalledWith(true)
   })
 
-  it('should dispatch onCheck when status changes', async () => {
+  it('should call onCheck with false if the Checkbox is already checked', async () => {
     const onCheck = jest.fn()
 
     render(<Checkbox label="Checkbox" onCheck={onCheck} isChecked />)

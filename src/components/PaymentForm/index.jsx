@@ -14,7 +14,7 @@ import { useCart } from 'hooks/use-cart'
 import { createPayment, createPaymentIntent } from 'utils/stripe/methods'
 
 const PaymentForm = ({ session }) => {
-  const { items, clearCart } = useCart()
+  const { items } = useCart()
   const { push } = useRouter()
   const stripe = useStripe()
   const elements = useElements()
@@ -27,7 +27,6 @@ const PaymentForm = ({ session }) => {
   useEffect(() => {
     const setPaymentMode = async () => {
       if (items.length) {
-        setFreeGames(false)
         const data = await createPaymentIntent({ items, token: session.jwt })
 
         if (data.freeGames) {
@@ -63,29 +62,28 @@ const PaymentForm = ({ session }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
     setLoading(true)
 
     if (freeGames) {
       saveOrder()
       push('/success')
-    } else {
-      const payload = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement)
-        }
-      })
+      return
+    }
 
-      if (payload.error) {
-        setError(`Payment failed: ${payload.error.message}`)
-        setLoading(false)
-      } else {
-        setError(null)
-        setLoading(false)
-        saveOrder(payload.paymentIntent)
-        clearCart()
-        push('/success')
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement)
       }
+    })
+
+    if (payload.error) {
+      setError(`Payment failed: ${payload.error.message}`)
+      setLoading(false)
+    } else {
+      setError(null)
+      setLoading(false)
+      saveOrder(payload.paymentIntent)
+      push('/success')
     }
   }
 
@@ -103,7 +101,11 @@ const PaymentForm = ({ session }) => {
             <CardElement
               options={{
                 hidePostalCode: true,
-                style: { base: { fontSize: '16px' } }
+                style: {
+                  base: {
+                    fontSize: '16px'
+                  }
+                }
               }}
               onChange={handleChange}
             />
@@ -116,7 +118,6 @@ const PaymentForm = ({ session }) => {
             </S.Error>
           )}
         </S.Body>
-
         <S.Footer>
           <Link href="/" passHref>
             <Button as="a" fullWidth minimal>
@@ -126,7 +127,7 @@ const PaymentForm = ({ session }) => {
           <Button
             fullWidth
             icon={loading ? <FormLoading /> : <ShoppingCart />}
-            disabled={!freeGames && (disabled || !!error)}
+            disabled={!freeGames && (disabled || !!error || loading)}
           >
             {!loading && <span>Buy now</span>}
           </Button>

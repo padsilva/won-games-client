@@ -10,7 +10,8 @@ export default {
     name: 'email',
     initialValue: '',
     placeholder: 'example@email.com',
-    icon: <Email />
+    icon: <Email />,
+    disabled: false
   },
   argTypes: {
     onInput: {
